@@ -22,9 +22,12 @@ public class ArrowSelect : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        image = GetComponent<Image>();
-        mySpritesHandler = CharacterManager.GetComponent<CharacterChosen>();
-        mySpritesHandler.PlayerAdd();
+        if (gameObject.activeSelf)
+        {
+            image = GetComponent<Image>();
+            mySpritesHandler = CharacterManager.GetComponent<CharacterChosen>();
+            mySpritesHandler.PlayerAdd();
+        }
     }
     
     public void CharacterChange(int change)

@@ -5,17 +5,18 @@ namespace Player
 {
     public class PlayerPowerup : MonoBehaviour
     {
-        private IPowerup myActivePowerUp;
+
+        private IPowerup _activePowerUp;
 
         public void ApplyPowerup(IPowerup powerup)
         {
-            myActivePowerUp = powerup;
-            StartCoroutine(myActivePowerUp.ScheduleEffect(gameObject));
+            _activePowerUp = powerup;
+            StartCoroutine(_activePowerUp.ScheduleEffect(gameObject));
         }
 
         public void CancelEffects()
         {
-            myActivePowerUp?.CleanUp();
+            _activePowerUp?.CleanUp();
         }
     }
 }

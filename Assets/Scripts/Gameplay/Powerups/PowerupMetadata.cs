@@ -8,5 +8,7 @@ namespace Gameplay.Powerups
         [SerializeField] public PowerupTypes Type;
         [SerializeField] public Color Color;
         [SerializeField] public AudioClip Audio;
+        
+        
     }
 }

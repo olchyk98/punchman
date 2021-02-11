@@ -9,25 +9,32 @@ namespace Gameplay.Powerups
         private const float SpeedModifier = 2.0f;
         private const int ActiveTime = 30;
 
-        private PlayerMovement myPlayerMovement;
-        private bool myIsActive = true;
-
+        private PlayerMovement _movementComponent;
+        
+        private bool _isActive = true;
+        
+        
+        
         public IEnumerator ScheduleEffect(GameObject player)
         {
-            myPlayerMovement = player.GetComponent<PlayerMovement>();
-            if (myIsActive)
+            _movementComponent = player.GetComponent<PlayerMovement>();
+            if (_isActive)
             {
-                myPlayerMovement.AddToSpeed(SpeedModifier);
+                _movementComponent.AddToSpeed(SpeedModifier);
             }
+            
+            
             yield return new WaitForSeconds(ActiveTime);
             CleanUp();
         }
 
         public void CleanUp()
         {
-            if (!myIsActive) return;
-            myIsActive = false;
-            myPlayerMovement.AddToSpeed(SpeedModifier * -1);
+            if (_isActive)
+            {
+                _isActive = false;
+                _movementComponent.AddToSpeed(SpeedModifier * -1);
+            }
         }
     }
 }

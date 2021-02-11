@@ -68,8 +68,8 @@ namespace Player {
         /// <summary>
         /// Adds the given amount to the players current max jump height
         /// </summary>
-        /// <param name="jumpModifier">The amount to modify the jump height with</param>
-        public void AddToJumpHeight(float jumpModifier)
+        /// <param name="modifier">The amount to modify the jump height with</param>
+        public void AddToJumpHeight(float modifier)
         {
             myJumpHeight += jumpModifier;
         }
@@ -77,11 +77,10 @@ namespace Player {
         /// <summary>
         /// Adds the given amount to the players speed
         /// </summary>
-        /// <param name="speedModifier">The amount to modify the speed with</param>
-        public void AddToSpeed(float speedModifier)
+        /// <param name="modifier">The amount to modify the speed with</param>
+        public void AddToSpeed(float modifier)
         {
-            mySpeed += speedModifier;
+            mySpeed += modifier;
         }
-
     }
 }
