@@ -11,15 +11,15 @@ namespace Gameplay {
         public static int NUMBER_OF_PLAYERS = 2;
 
         // A list containing all of the players in game
-        private List<GameObject> allPlayers = new List<GameObject>();
+        private List<PlayerHandler> allPlayers = new List<PlayerHandler>();
 
         private void Start()
         {
             SpawnPlayers();
         }
 
-        private void SpawnPlayers() {
-            print(NUMBER_OF_PLAYERS);
+        private void SpawnPlayers()
+        {
             for (int f = 1; f <= NUMBER_OF_PLAYERS; ++f)
             {
                 // Get spawn position
@@ -30,14 +30,24 @@ namespace Gameplay {
                 GameObject playerInstance = Instantiate(myPlayerPrefab, spawnPointPos3, Quaternion.identity);
 
                 // Initialize a player and give it its index
-                playerInstance
-                    .GetComponent<PlayerHandler>()
-                    .InitializeHandler(f);
+                var playerHandler = playerInstance
+                    .GetComponent<PlayerHandler>();
 
-                print(playerInstance);
+                playerHandler.InitializeHandler(f);
+                playerHandler.OnAttack += HandlePlayerAttack;
+
                 // Append it to the list of players
-                allPlayers.Add(myPlayerPrefab);
+                allPlayers.Add(playerHandler);
             }
+        }
+
+        private void HandlePlayerAttack(RaycastHit2D hit, float damage)
+        {
+            var target = hit.collider.gameObject;
+            var targetHandler = target.GetComponent<PlayerHandler>();
+            if(targetHandler == null) return;
+
+            targetHandler.ApplyDamage(damage, hit.point);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Player {
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.tag != "Player") return;
-            return; // TODO: REMOVE
+            return;
 
             var otherDirection = (other.gameObject.transform.position - myTransform.position);
             var contactPoint = myTransform.position + otherDirection;
