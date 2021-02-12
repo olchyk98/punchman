@@ -61,10 +61,9 @@ namespace Player {
 
                 return true;
             }
-            else
-            {
-                Debug.LogError(i + " is out of bounds in HitDetection script of " + gameObject.name); 
-            }
+            
+            Debug.LogError(i + " is out of bounds in HitDetection script of " + gameObject.name);
+            return false;
         }
 
         #region Cooldown methods
@@ -92,7 +91,11 @@ namespace Player {
             if (i == -1)
                 onCooldown = false;
             else if (CheckCooldown(i))
+            {
+                myAnimator.ResetTrigger(myAttackAnimations[i]);
                 myCooldown -= 1 << i;
+            }
+                
         }
 
         /// <summary>
