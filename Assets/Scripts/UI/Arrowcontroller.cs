@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class Arrowcontroller : MonoBehaviour
 {
-    public List<Sprite> Sprites = new List<Sprite>();
+    [SerializeField]
+    List<Sprite> Sprites = new List<Sprite>();
     private Image image;
     
     // Start is called before the first frame update
