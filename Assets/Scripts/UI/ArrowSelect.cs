@@ -10,9 +10,9 @@ public class ArrowSelect : MonoBehaviour
 
     [SerializeField] private List<Sprite> mySprites = new List<Sprite>();
 
-    [SerializeField] private CharacterChosen mySpritesHandler;
+    private CharacterChosen mySpritesHandler;
 
-    [SerializeField] CharacterChosen CharacterManager;
+    [SerializeField] GameObject CharacterManager;
     
     
     [SerializeField] private int myPlayerIndex; // at every player the player must input this to identify what number the players are
@@ -23,15 +23,14 @@ public class ArrowSelect : MonoBehaviour
     void Awake()
     {
         image = GetComponent<Image>();
-        CharacterManager = mySpritesHandler.GetComponent<CharacterChosen>();
-        CharacterManager.PlayerAdd();
-        CharacterManager.ChangeSelected(myPlayerIndex, CurrentSpriteIndex);
+        mySpritesHandler = CharacterManager.GetComponent<CharacterChosen>();
+        mySpritesHandler.PlayerAdd();
     }
     
     public void CharacterChange(int change)
     {
-        CurrentSpriteIndex = Mathf.Clamp(CurrentSpriteIndex + change, 0, mySprites.Count - 1);
+        CurrentSpriteIndex = Mathf.Clamp(CurrentSpriteIndex + change, 0, mySprites.Count -1);
         image.sprite = mySprites[CurrentSpriteIndex];
-        CharacterManager.ChangeSelected(myPlayerIndex, CurrentSpriteIndex);
+        mySpritesHandler.ChangeSelected(myPlayerIndex, CurrentSpriteIndex);
     }
 }
