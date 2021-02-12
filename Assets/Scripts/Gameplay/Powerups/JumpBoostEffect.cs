@@ -7,10 +7,10 @@ namespace Gameplay.Powerups
     public class JumpBoostEffect: IPowerup
     {
 
-        private float jumpModifier = 2.0f;
-        private int activeTime = 30;
+        private const float JumpModifier = 2.0f;
+        private const int ActiveTime = 30;
         
-        private bool isActive = true;
+        private bool _isActive = true;
         
         private GameObject _impactedPlayer;
 
@@ -18,19 +18,19 @@ namespace Gameplay.Powerups
         public IEnumerator ScheduleEffect(GameObject player)
         {
             _impactedPlayer = player;
-            if (isActive)
-                _impactedPlayer.GetComponent<PlayerMovement>().AddToJumpHeight(jumpModifier);
-            yield return new WaitForSeconds(activeTime);
+            if (_isActive)
+                _impactedPlayer.GetComponent<PlayerMovement>().AddToJumpHeight(JumpModifier);
+            yield return new WaitForSeconds(ActiveTime);
             CleanUp();
         }
 
         
         public void CleanUp()
         {
-            if (isActive)
+            if (_isActive)
             {
-                isActive = false;
-                _impactedPlayer?.GetComponent<PlayerMovement>().AddToJumpHeight(jumpModifier * -1);
+                _isActive = false;
+                _impactedPlayer?.GetComponent<PlayerMovement>().AddToJumpHeight(JumpModifier * -1);
             }
             
         }

@@ -7,6 +7,7 @@ namespace Player {
     [RequireComponent(typeof(PlayerInputHandler))]
     [RequireComponent(typeof(PlayerHitDetection))]
     [RequireComponent(typeof(PlayerAttack))]
+    [RequireComponent(typeof(PlayerPowerup))]
     public class PlayerHandler : MonoBehaviour
     {
         private PlayerHealth myHealth;
