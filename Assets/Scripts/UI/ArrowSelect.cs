@@ -10,20 +10,27 @@ public class ArrowSelect : MonoBehaviour
 
     public List<Sprite> Sprites = new List<Sprite>();
 
+    [SerializeField] GameObject Manager;
+
+    
+    
+    [SerializeField] int PlayerNR;
+    
     private int Shown = 0;
     // Start is called before the first frame update
     void Awake()
     {
         image = GetComponent<Image>();
+        var CharacterIndex = Manager.GetComponent<CharacterChosen>();
+        CharacterIndex.PlayerAdd();
+        CharacterIndex.ChangeSelected(PlayerNR, Shown);
     }
-
-    private void Update()
-    {
-        
-    }
-
+    
     public void CharacterChange(int change)
     {
-        image.sprite = Sprites[Mathf.Clamp(Shown + change, 0, Sprites.Count-1)];
+        Shown = Mathf.Clamp(Shown + change, 0, Sprites.Count - 1);
+        image.sprite = Sprites[Shown];
+        var CharacterIndex = Manager.GetComponent<CharacterChosen>();
+        CharacterIndex.ChangeSelected(PlayerNR, Shown);
     }
 }
