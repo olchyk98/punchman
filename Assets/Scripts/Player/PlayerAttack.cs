@@ -37,7 +37,7 @@ namespace Player {
 
             // Get first player element that's not ourselves
             Predicate<RaycastHit2D> targetPredicate = (f) => (f.collider.gameObject.CompareTag("Player")
-                    && !GameObject.ReferenceEquals(gameObject, f.collider.gameObject));
+                    && !ReferenceEquals(gameObject, f.collider.gameObject));
 
             RaycastHit2D hit = hits.Find(targetPredicate);
 
@@ -46,19 +46,20 @@ namespace Player {
             return hit;
         }
 
-        public void RunAttack(int i)
+        public bool RunAttack(int i)
         {
             if (i < attacks.Count && i >= 0)
             {
                 // Cooldown handling
-                if (CheckCooldown(i) || onCooldown) return;
+                if (CheckCooldown(i) || onCooldown) return false;
                 SetCooldown(i, attacks[i].cooldown);
                 onCooldown = true;
                 StartCoroutine(RemoveCooldown(attacks[i].animationCooldown));
 
                 // Attack execution
                 myAnimator.SetTrigger(myAttackAnimations[i]);
-                
+
+                return true;
             }
             else
             {
