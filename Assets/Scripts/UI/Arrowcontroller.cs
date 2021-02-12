@@ -15,9 +15,8 @@ public class Arrowcontroller : MonoBehaviour
     {
         image = GetComponent<Image>();
     }
-
-    public void ArrowChange(int index)
+    public void ChangeArrowSprite(int spriteIndex)
     {
-        image.sprite = Sprites[index];
+        image.sprite = Sprites[spriteIndex];
     }
 }
