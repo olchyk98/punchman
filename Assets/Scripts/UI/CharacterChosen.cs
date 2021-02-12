@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CharacterChosen : MonoBehaviour
 {
-    public List<int> SelectedCharacterIndex = new List<int>();
+    [SerializeField]
+    List<int> SelectedCharacterIndex = new List<int>();
 
     public void PlayerAdd() // this gets called in the arrowcontroller script and that means that for every character that exists there will be an spot on the list for them
     {
