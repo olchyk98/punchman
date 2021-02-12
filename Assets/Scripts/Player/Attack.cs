@@ -8,6 +8,5 @@ public struct Attack
     public float damage;
     public float cooldown;
     public float animationCooldown;
-    public Animation animation;
-    public GameObject hitboxObject;
+    public string playerAnimationTrigger;
 }
