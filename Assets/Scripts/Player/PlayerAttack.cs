@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,15 +16,22 @@ namespace Player {
             myTransform = GetComponent<Transform>();
         }
 
-        public Vector2 AttackForward ()
+        public RaycastHit2D AttackForward ()
         {
-            RaycastHit2D hit = Physics2D.Raycast(
+            List<RaycastHit2D> hits = (Physics2D.RaycastAll(
                 myTransform.position,
                 Vector2.right
-            );
-            if(hit.collider == null) return default;
+            )).ToList();
 
-            return hit.point;
+            // Get first player element that's not ourselves
+            Predicate<RaycastHit2D> targetPredicate = (f) => (f.collider.gameObject.CompareTag("Player")
+                    && !GameObject.ReferenceEquals(gameObject, f.collider.gameObject));
+
+            RaycastHit2D hit = hits.Find(targetPredicate);
+
+            if(hit == default) return default;
+
+            return hit;
         }
 
         public void RunAttack(int i)

@@ -50,9 +50,11 @@ namespace Player {
             // (1-Health/MaxHealth)*MaxKnockbackForce
             float force = (1 - Health / MaxHealth) * MaxKnockbackForce;
             Vector2 forceVector = new Vector2(force, force);
+            // TODO: IMPLEMENT: should be attack at point
+            forceVector = new Vector2(100f, 100f);
 
             // Apply relative force
-            myRb.AddForceAtPosition(forceVector, collisionPoint, ForceMode2D.Impulse);
+            myRb.AddForce(forceVector, ForceMode2D.Impulse);
         }
 
     }

@@ -19,7 +19,7 @@ namespace Player {
 
         private void HandleAttackTick(int playerIndex)
         {
-            if (GetButton($"P{playerIndex}_Fire")) return;
+            if (!GetButton($"P{playerIndex}_Fire")) return;
 
             var packet = new PlayerInputPacket(
                 PlayerActions.FIRE,

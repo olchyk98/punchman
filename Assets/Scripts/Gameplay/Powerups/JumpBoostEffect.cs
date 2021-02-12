@@ -9,9 +9,9 @@ namespace Gameplay.Powerups
 
         private float jumpModifier = 2.0f;
         private int activeTime = 30;
-        
+
         private bool isActive = true;
-        
+
         private GameObject _impactedPlayer;
 
         // TODO: Probably needs a revisit when its time for online multiplayer.
@@ -24,7 +24,7 @@ namespace Gameplay.Powerups
             CleanUp();
         }
 
-        
+
         public void CleanUp()
         {
             if (isActive)
@@ -32,7 +32,7 @@ namespace Gameplay.Powerups
                 isActive = false;
                 _impactedPlayer?.GetComponent<PlayerMovement>().AddToJumpHeight(jumpModifier * -1);
             }
-            
+
         }
     }
 }
