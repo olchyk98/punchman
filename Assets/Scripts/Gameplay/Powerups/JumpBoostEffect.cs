@@ -9,16 +9,16 @@ namespace Gameplay.Powerups
         private const float JumpModifier = 2.0f;
         private const int ActiveTime = 30;
         
-        private bool _isActive = true;
+        private bool myIsActive = true;
         
-        private GameObject _impactedPlayer;
+        private PlayerMovement myImpactedMovement;
 
         // TODO: Probably needs a revisit when its time for online multiplayer.
         public IEnumerator ScheduleEffect(GameObject player)
         {
-            _impactedPlayer = player;
-            if (_isActive)
-                _impactedPlayer.GetComponent<PlayerMovement>().AddToJumpHeight(JumpModifier);
+            myImpactedMovement = player.GetComponent<PlayerMovement>();
+            if (myIsActive)
+                myImpactedMovement.AddToJumpHeight(JumpModifier);
             yield return new WaitForSeconds(ActiveTime);
             CleanUp();
         }
@@ -26,10 +26,10 @@ namespace Gameplay.Powerups
 
         public void CleanUp()
         {
-            if (_isActive)
+            if (myIsActive)
             {
-                _isActive = false;
-                _impactedPlayer?.GetComponent<PlayerMovement>().AddToJumpHeight(JumpModifier * -1);
+                myIsActive = false;
+                myImpactedMovement.AddToJumpHeight(JumpModifier * -1);
             }
 
         }

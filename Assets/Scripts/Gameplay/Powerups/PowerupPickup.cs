@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Player;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,11 +14,16 @@ namespace Gameplay.Powerups
     public class PowerupPickup : MonoBehaviour
     {
 
-        public UnityAction DidPickUp;
+        public UnityAction OnPickUp;
         
-        private PowerupTypes _powerupType;
+        private PowerupTypes myPowerupType;
 
         [SerializeField] private GameObject audioController;
+        [SerializeField] private PowerupMetadata[] AllPowerupMetadata;
+        public PowerupMetadata GetPowerupMetadataWithType(PowerupTypes type)
+        {
+            return AllPowerupMetadata.First(m => m.Type == type);
+        }
         
 
 
@@ -35,16 +41,9 @@ namespace Gameplay.Powerups
             throw new NotImplementedException("There is no powerup for this yet lmao");
         }
         
-        static Color GetColorFromPowerUp(PowerupTypes type)
+        Color GetColorFromPowerUp(PowerupTypes type)
         {
-            switch (type)
-            {
-                case PowerupTypes.JUMP_BOOST:
-                    return Color.cyan;
-                case PowerupTypes.SPEED_BOOST:
-                    return Color.green;
-            }
-            throw new NotImplementedException("this color does not exist.");
+            return GetPowerupMetadataWithType(type).Color;
         }
         #endregion
         
@@ -55,8 +54,8 @@ namespace Gameplay.Powerups
         /// <param name="aType">The powerup type.</param>
         public void SetPowerUpType(PowerupTypes aType)
         {
-            _powerupType = aType;
-            SetPowerUpColor(GetColorFromPowerUp(_powerupType));
+            myPowerupType = aType;
+            SetPowerUpColor(GetColorFromPowerUp(myPowerupType));
             gameObject.SetActive(true);
         }
 
@@ -72,16 +71,16 @@ namespace Gameplay.Powerups
             // Check that the other colliding GameObject is a player.
             if (powerupComponent == null)
                 return;
-            IPowerup powerup = GetPowerUpFromType(_powerupType);
+            IPowerup powerup = GetPowerUpFromType(myPowerupType);
             // Remove the effects of any previously held powerup.
             powerupComponent.CancelEffects();
             // Apply the new powerup
             powerupComponent.ApplyPowerup(powerup);
             // Play the audio for the power up
             GameObject audio = Instantiate(audioController);
-            audio.GetComponent<PowerupSoundPlayback>().SetType(_powerupType);
+            audio.GetComponent<PowerupSoundPlayback>().SetAudio(GetPowerupMetadataWithType(myPowerupType).Audio);
             // Tell the powerup spawner that its no longer there.
-            DidPickUp?.Invoke();
+            OnPickUp?.Invoke();
             // Remove itself.
             Destroy(gameObject);
         }

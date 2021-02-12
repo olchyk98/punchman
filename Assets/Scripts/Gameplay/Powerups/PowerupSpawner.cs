@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using Random = Unity.Mathematics.Random;
 
 namespace Gameplay.Powerups
 {
@@ -13,18 +11,16 @@ namespace Gameplay.Powerups
         [SerializeField] private PowerupTypes[] spawnTypes;
         [SerializeField] private int spawnHeightAboveSpawner;
         
-        private Vector3 _spawnerPosition;
+        private Vector3 mySpawnerPosition;
         private bool _holdingSpawnedPowerup;
-        private Random _rng;
 
         // Start is called before the first frame update
         private void Start()
         {
             // For some reason if I dont explicitly set a seed it errors out, very cool unity
-            _rng = new Random((uint)DateTime.Now.Millisecond);
             var location = gameObject.transform.position;
             location.y += spawnHeightAboveSpawner;
-            _spawnerPosition = location;
+            mySpawnerPosition = location;
             StartCoroutine(StartSpawningPowerups());
         }
 
@@ -35,7 +31,7 @@ namespace Gameplay.Powerups
         /// <returns>A random float which represents the amount of time, in seconds, that the respawner should wait before checking if its met the respawning conditions.</returns>
         private float CalculateNextSpawnCheckTime()
         {
-            return baseRespawnDelay + _rng.NextFloat(0f, maxRandomExtraRespawnDelay);
+            return baseRespawnDelay + Random.Range(0f, maxRandomExtraRespawnDelay);
         }
         
         /// <summary>
@@ -44,7 +40,7 @@ namespace Gameplay.Powerups
         /// <returns>A random power up type.</returns>
         private PowerupTypes MakeRandomPowerupSelection()
         {
-            var powerupId = _rng.NextInt(0, spawnTypes.Length - 1);
+            var powerupId = Random.Range(0, spawnTypes.Length - 1);
             return spawnTypes[powerupId];
         }
 
@@ -61,10 +57,10 @@ namespace Gameplay.Powerups
                 if (!_holdingSpawnedPowerup)
                 {
                     _holdingSpawnedPowerup = true;
-                    GameObject powerup = Instantiate(powerupPickUp, _spawnerPosition, Quaternion.identity);
+                    GameObject powerup = Instantiate(powerupPickUp, mySpawnerPosition, Quaternion.identity);
                     var powerupComponent = powerup.GetComponent<PowerupPickup>();
                     powerupComponent.SetPowerUpType(MakeRandomPowerupSelection());
-                    powerupComponent.DidPickUp += HandlePickUp;
+                    powerupComponent.OnPickUp += HandlePickUp;
                     yield return new WaitForSeconds(CalculateNextSpawnCheckTime());
                 }
             }

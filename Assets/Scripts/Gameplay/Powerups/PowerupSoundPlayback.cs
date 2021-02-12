@@ -10,34 +10,18 @@ namespace Gameplay.Powerups
     {
         [SerializeField] private AudioClip jumpFx;
         [SerializeField] private AudioClip speedFx;
-
-    
-        #region converter
-        AudioClip GetSoundFromType(PowerupTypes type)
-        {
-            switch (type)
-            {
-                case PowerupTypes.JUMP_BOOST:
-                    return jumpFx;
-                case PowerupTypes.SPEED_BOOST:
-                    return speedFx;
-            }
-
-            throw new NotImplementedException("There is no sound for this yet lmao");
-        }
-        #endregion
+        
 
         /// <summary>
         /// Used by the pickup to tell the powerup sound prefab which sound it should select based of powerup type.
         /// </summary>
         /// <param name="aType">The powerup type</param>
-        public void SetType(PowerupTypes aType)
+        public void SetAudio(AudioClip audio)
         {
-            AudioClip sfx = GetSoundFromType(aType);
             var source = GetComponent<AudioSource>();
-            source.clip = sfx;
+            source.clip = audio;
             source.Play();
-            StartCoroutine(DestoryAfter(sfx.length));
+            StartCoroutine(DestoryAfter(audio.length));
         }
 
         /// <summary>
