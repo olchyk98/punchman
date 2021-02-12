@@ -10,39 +10,25 @@ namespace Gameplay.Powerups
     {
         [SerializeField] private AudioClip jumpFx;
         [SerializeField] private AudioClip speedFx;
+        
 
-        private PowerupTypes Type;
-    
-        #region converter
-        AudioClip GetSoundFromType(PowerupTypes type)
+        /// <summary>
+        /// Used by the pickup to tell the powerup sound prefab which sound it should select based of powerup type.
+        /// </summary>
+        /// <param name="aType">The powerup type</param>
+        public void SetAudio(AudioClip audio)
         {
-            switch (type)
-            {
-                case PowerupTypes.JUMP_BOOST:
-                    return jumpFx;
-                case PowerupTypes.SPEED:
-                    return speedFx;
-            }
-
-            throw new NotImplementedException("There is no sound for this yet lmao");
-        }
-        #endregion
-
-        public void SetType(PowerupTypes aType)
-        {
-            Type = aType;
-        }
-    
-        // Start is called before the first frame update
-        void Start()
-        {
-            AudioClip sfx = GetSoundFromType(Type);
             var source = GetComponent<AudioSource>();
-            source.clip = sfx;
+            source.clip = audio;
             source.Play();
-            StartCoroutine(DestoryAfter(sfx.length));
+            StartCoroutine(DestoryAfter(audio.length));
         }
 
+        /// <summary>
+        /// A coroutine which destroys the GameObject holding the component after a set amount of time.
+        /// </summary>
+        /// <param name="time">Time in seconds.</param>
+        /// <returns></returns>
         IEnumerator DestoryAfter(float time)
         {
             yield return new WaitForSeconds(time);

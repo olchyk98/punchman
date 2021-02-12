@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Gameplay.Powerups
 {
@@ -11,10 +13,17 @@ namespace Gameplay.Powerups
     
     public class PowerupPickup : MonoBehaviour
     {
+
+        public UnityAction OnPickUp;
         
-        private PowerupTypes _powerupType;
+        private PowerupTypes myPowerupType;
 
         [SerializeField] private GameObject audioController;
+        [SerializeField] private PowerupMetadata[] AllPowerupMetadata;
+        public PowerupMetadata GetPowerupMetadataWithType(PowerupTypes type)
+        {
+            return AllPowerupMetadata.First(m => m.Type == type);
+        }
         
 
 
@@ -26,29 +35,28 @@ namespace Gameplay.Powerups
             {
                 case PowerupTypes.JUMP_BOOST:
                     return new JumpBoostEffect();
+                case PowerupTypes.SPEED_BOOST:
+                    return new SpeedBoostEffect();
             }
             throw new NotImplementedException("There is no powerup for this yet lmao");
         }
         
-        static Color GetColorFromPowerUp(PowerupTypes type)
+        Color GetColorFromPowerUp(PowerupTypes type)
         {
-            switch (type)
-            {
-                case PowerupTypes.JUMP_BOOST:
-                    return Color.cyan;
-            }
-            throw new NotImplementedException("this color does not exist.");
+            return GetPowerupMetadataWithType(type).Color;
         }
         #endregion
         
         
         /// <summary>
-        /// Sets the type of the powerup, must be done before instantiated so it's set before start.
+        /// Sets the type of the powerup, must be done after instantiated because unity is special.
         /// </summary>
         /// <param name="aType">The powerup type.</param>
         public void SetPowerUpType(PowerupTypes aType)
         {
-            _powerupType = aType;
+            myPowerupType = aType;
+            SetPowerUpColor(GetColorFromPowerUp(myPowerupType));
+            gameObject.SetActive(true);
         }
 
         private void SetPowerUpColor(Color color)
@@ -57,20 +65,23 @@ namespace Gameplay.Powerups
             spriteRenderer.color = color;
         }
 
-        private void Start()
-        {
-            SetPowerUpColor(GetColorFromPowerUp(_powerupType));
-            audioController.GetComponent<PowerupSoundPlayback>().SetType(_powerupType);
-        }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
+            var powerupComponent = other.gameObject.GetComponent<PlayerPowerup>();
             // Check that the other colliding GameObject is a player.
-            if (other.gameObject.GetComponent<PlayerHandler>() == null)
+            if (powerupComponent == null)
                 return;
-            IPowerup powerup = GetPowerUpFromType(_powerupType);
-            StartCoroutine(powerup.ScheduleEffect(other.gameObject));
-            Instantiate(audioController);
+            IPowerup powerup = GetPowerUpFromType(myPowerupType);
+            // Remove the effects of any previously held powerup.
+            powerupComponent.CancelEffects();
+            // Apply the new powerup
+            powerupComponent.ApplyPowerup(powerup);
+            // Play the audio for the power up
+            GameObject audio = Instantiate(audioController);
+            audio.GetComponent<PowerupSoundPlayback>().SetAudio(GetPowerupMetadataWithType(myPowerupType).Audio);
+            // Tell the powerup spawner that its no longer there.
+            OnPickUp?.Invoke();
+            // Remove itself.
             Destroy(gameObject);
         }
     }
