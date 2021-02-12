@@ -6,31 +6,30 @@ namespace Gameplay.Powerups
 {
     public class JumpBoostEffect: IPowerup
     {
-
-        private float jumpModifier = 2.0f;
-        private int activeTime = 30;
-
-        private bool isActive = true;
-
-        private GameObject _impactedPlayer;
+        private const float JumpModifier = 2.0f;
+        private const int ActiveTime = 30;
+        
+        private bool myIsActive = true;
+        
+        private PlayerMovement myImpactedMovement;
 
         // TODO: Probably needs a revisit when its time for online multiplayer.
         public IEnumerator ScheduleEffect(GameObject player)
         {
-            _impactedPlayer = player;
-            if (isActive)
-                _impactedPlayer.GetComponent<PlayerMovement>().AddToJumpHeight(jumpModifier);
-            yield return new WaitForSeconds(activeTime);
+            myImpactedMovement = player.GetComponent<PlayerMovement>();
+            if (myIsActive)
+                myImpactedMovement.AddToJumpHeight(JumpModifier);
+            yield return new WaitForSeconds(ActiveTime);
             CleanUp();
         }
 
 
         public void CleanUp()
         {
-            if (isActive)
+            if (myIsActive)
             {
-                isActive = false;
-                _impactedPlayer?.GetComponent<PlayerMovement>().AddToJumpHeight(jumpModifier * -1);
+                myIsActive = false;
+                myImpactedMovement.AddToJumpHeight(JumpModifier * -1);
             }
 
         }

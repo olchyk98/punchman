@@ -30,14 +30,20 @@ namespace Player {
 
         public RaycastHit2D AttackForward ()
         {
+            var actorX = myTransform.right.x;
             List<RaycastHit2D> hits = (Physics2D.RaycastAll(
                 myTransform.position,
-                Vector2.right
+                Vector2.right * actorX,
+                distance: 10f
             )).ToList();
 
             // Get first player element that's not ourselves
-            Predicate<RaycastHit2D> targetPredicate = (f) => (f.collider.gameObject.CompareTag("Player")
-                    && !ReferenceEquals(gameObject, f.collider.gameObject));
+            Predicate<RaycastHit2D> targetPredicate = (f) => {
+                var targetObj = f.collider.gameObject;
+
+                return targetObj.CompareTag("Player")
+                    && !ReferenceEquals(gameObject, targetObj);
+            };
 
             RaycastHit2D hit = hits.Find(targetPredicate);
 
@@ -48,6 +54,7 @@ namespace Player {
 
         public bool RunAttack(int i)
         {
+            // TODO
             if (i < attacks.Count && i >= 0)
             {
                 // Cooldown handling

@@ -53,14 +53,34 @@ namespace Player {
             myTransform.position = currentPosition;
 
             // Flip model
-            if(direction.x != 0f) {
-                myRenderer.flipX = direction.x < 0f;
-            }
+            HandleRotation(direction.x);
         }
 
+        private void HandleRotation(float x)
+        {
+            if(x == 0f) return;
+
+            myTransform.rotation = x < 0
+                ? Quaternion.Euler(0, 180, 0)
+                : Quaternion.identity;
+        }
+
+        /// <summary>
+        /// Adds the given amount to the players current max jump height
+        /// </summary>
+        /// <param name="modifier">The amount to modify the jump height with</param>
         public void AddToJumpHeight(float modifier)
         {
             myJumpHeight += modifier;
+        }
+
+        /// <summary>
+        /// Adds the given amount to the players speed
+        /// </summary>
+        /// <param name="modifier">The amount to modify the speed with</param>
+        public void AddToSpeed(float modifier)
+        {
+            mySpeed += modifier;
         }
     }
 }
