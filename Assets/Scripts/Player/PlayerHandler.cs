@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Player {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -16,6 +17,8 @@ namespace Player {
         private PlayerInputHandler myInputHandler;
         private PlayerHitDetection myHitDetection;
 
+        public UnityAction<RaycastHit2D, float> OnAttack;
+
         public int Index { get; private set; }
         public float Health {
             get { return myHealth.Health; }
@@ -26,6 +29,7 @@ namespace Player {
             myHitDetection = GetComponent<PlayerHitDetection>();
             myMovement = GetComponent<PlayerMovement>();
             myHealth = GetComponent<PlayerHealth>();
+            myAttack = GetComponent<PlayerAttack>();
 
             myInputHandler.OnMove += HandleMove;
             myInputHandler.OnFire += HandleAttack;
@@ -70,9 +74,10 @@ namespace Player {
 
         private void HandleAttack ()
         {
-            Vector2 collisionPoint = myAttack.AttackForward();
-            print(collisionPoint);
-            if(collisionPoint == default) return;
+            RaycastHit2D hit = myAttack.AttackForward();
+            if(hit == default) return;
+
+            OnAttack?.Invoke(hit, 10f);
         }
     }
 }

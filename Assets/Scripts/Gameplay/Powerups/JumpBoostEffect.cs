@@ -6,7 +6,6 @@ namespace Gameplay.Powerups
 {
     public class JumpBoostEffect: IPowerup
     {
-
         private const float JumpModifier = 2.0f;
         private const int ActiveTime = 30;
         
@@ -24,7 +23,7 @@ namespace Gameplay.Powerups
             CleanUp();
         }
 
-        
+
         public void CleanUp()
         {
             if (_isActive)
@@ -32,7 +31,7 @@ namespace Gameplay.Powerups
                 _isActive = false;
                 _impactedPlayer?.GetComponent<PlayerMovement>().AddToJumpHeight(JumpModifier * -1);
             }
-            
+
         }
     }
 }
