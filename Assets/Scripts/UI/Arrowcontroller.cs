@@ -2,34 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Arrowcontroller : MonoBehaviour
 {
-    public Animation anim;
-
-    private bool shouldplay;
+    public List<Sprite> Sprites = new List<Sprite>();
+    private Image image;
+    
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animation>();
+        image = GetComponent<Image>();
     }
 
-    private void Update()
+    public void ArrowChange(int index)
     {
-        if (shouldplay && anim.isPlaying == false)
-        {
-            anim.Play();
-        }
-    }
-
-    public void AnimatorChange(bool Play)
-    {
-        shouldplay = Play;
-        if (Play && anim.isPlaying == false)
-        {
-            anim.Play();  
-        }
-        else
-            anim.Stop();
+        image.sprite = Sprites[index];
     }
 }

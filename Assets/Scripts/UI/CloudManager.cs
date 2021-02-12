@@ -28,12 +28,13 @@ public class CloudManager : MonoBehaviour
             float y = Random.Range(MinY, MaxY);
 
             var CloudResult = Cloud[Random.Range(0, Cloud.Count)];
-            
-            Vector2 Position = new Vector2(0, y);
+            var speed = Random.Range(MinSpeed, MaxSpeed);
+
+            Vector3 Position = new Vector3(0, y, -speed);
             GameObject gameObject = Instantiate(CloudResult);
-            gameObject.transform.localPosition = Position;
+            gameObject.transform.position = Position;
             var anim = gameObject.GetComponent<Animation>();
-            anim["Cloud Move"].speed = Random.Range(MinSpeed, MaxSpeed); 
+            anim["Cloud Move"].speed = speed;
         }
     }
 }
