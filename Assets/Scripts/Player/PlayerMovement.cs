@@ -53,9 +53,16 @@ namespace Player {
             myTransform.position = currentPosition;
 
             // Flip model
-            if(direction.x != 0f) {
-                myRenderer.flipX = direction.x < 0f;
-            }
+            HandleRotation(direction.x);
+        }
+
+        private void HandleRotation(float x)
+        {
+            if(x == 0f) return;
+
+            myTransform.rotation = x < 0
+                ? Quaternion.Euler(0, 180, 0)
+                : Quaternion.identity;
         }
 
         /// <summary>
