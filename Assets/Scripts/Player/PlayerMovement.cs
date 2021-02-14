@@ -30,7 +30,7 @@ namespace Player {
         private void Update() {
             // Faster falling
             if (myRb.velocity.y < 0) {
-                myRb.velocity += Vector2.up * Physics.gravity.y * (.4f - 1) * Time.deltaTime;
+                myRb.velocity += Vector2.up * (Physics.gravity.y * (.4f - 1) * Time.deltaTime);
             }
         }
 
@@ -61,19 +61,19 @@ namespace Player {
         /// <summary>
         /// Adds the given amount to the players current max jump height
         /// </summary>
-        /// <param name="modifier">The amount to modify the jump height with</param>
-        public void AddToJumpHeight(float modifier)
+        /// <param name="jumpModifier">The amount to modify the jump height with</param>
+        public void AddToJumpHeight(float jumpModifier)
         {
-            myJumpHeight += modifier;
+            myJumpHeight += jumpModifier;
         }
 
         /// <summary>
         /// Adds the given amount to the players speed
         /// </summary>
-        /// <param name="modifier">The amount to modify the speed with</param>
-        public void AddToSpeed(float modifier)
+        /// <param name="speedModifier">The amount to modify the speed with</param>
+        public void AddToSpeed(float speedModifier)
         {
-            mySpeed += modifier;
+            mySpeed += speedModifier;
         }
     }
 }
