@@ -45,6 +45,11 @@ namespace Player {
             Index = myIndex;
         }
 
+        private bool ValidateInputPacket(PlayerInputPacket packet)
+        {
+            return packet.PlayerIndex.Equals(Index);
+        }
+
         /// <summary>
         /// Applies specified damage to the player.
         /// Applies knockback effect to the player.
@@ -63,6 +68,8 @@ namespace Player {
 
         private void HandleMove(PlayerInputPacket packet)
         {
+            if(!ValidateInputPacket(packet)) return;
+
             if(packet.PlayerIndex != Index) return;
             myMovement.HandleMove(packet);
         }
@@ -72,8 +79,10 @@ namespace Player {
             ApplyDamage(10f, collisionPoint);
         }
 
-        private void HandleAttack ()
+        private void HandleAttack (PlayerInputPacket packet)
         {
+            if(!ValidateInputPacket(packet)) return;
+
             RaycastHit2D hit = myAttack.AttackForward();
             if(hit == default) return;
 

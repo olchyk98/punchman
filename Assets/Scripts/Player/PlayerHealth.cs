@@ -4,15 +4,18 @@ namespace Player {
     public class PlayerHealth : MonoBehaviour
     {
         private Rigidbody2D myRb;
+        private Transform myTransform;
 
-        public static float MaxKnockbackForce = 0f;
+        public static float MaxKnockbackForce = 100f;
         public static float MaxHealth = 100f;
 
         public float Health { get; private set; }
 
         private void Start() {
             myRb = GetComponent<Rigidbody2D>();
-            Health = 1f;
+            myTransform = GetComponent<Transform>();
+
+            Health = MaxHealth;
         }
 
         /// <summary>
@@ -26,7 +29,8 @@ namespace Player {
         /// Vector2 of position where another player collided with the target.
         /// Can be default if damage wasn't applied by a player.
         /// </param>
-        public void ApplyDamage(float damage, Vector2 collisionPoint = default) {
+        public void ApplyDamage(float damage, Vector2 collisionPoint = default)
+        {
             Health -= damage;
             if(collisionPoint != default)
             {
@@ -45,17 +49,22 @@ namespace Player {
         /// Vector2 of position where another player collided with the target.
         /// Can be default if damage wasn't applied by a player.
         /// </param>
-        private void KnockBody(float damage, Vector2 collisionPoint) {
+        private void KnockBody(float damage, Vector2 collisionPoint)
+        {
             // Calculate force
-            // (1-Health/MaxHealth)*MaxKnockbackForce
             float force = (1 - Health / MaxHealth) * MaxKnockbackForce;
-            Vector2 forceVector = new Vector2(force, force);
-            // TODO: IMPLEMENT: should be attack at point
-            forceVector = new Vector2(100f, 100f);
+
+            // Construct force vector
+            // TODO: Simplify
+            var position = myTransform.position;
+            float forceX = position.x > collisionPoint.x ? 1 : -1;
+
+            float forceY = position.y > collisionPoint.y ? -1 : 1;
+
+            var forceVector = new Vector2(forceX, forceY) * force;
 
             // Apply relative force
             myRb.AddForce(forceVector, ForceMode2D.Impulse);
         }
-
     }
 }

@@ -7,7 +7,7 @@ namespace Player {
     public class PlayerInputHandler : MonoBehaviour
     {
         public UnityAction<PlayerInputPacket> OnMove;
-        public UnityAction OnFire;
+        public UnityAction<PlayerInputPacket> OnFire;
 
         public void Update()
         {
@@ -27,7 +27,7 @@ namespace Player {
                 new Vector2()
             );
 
-            OnFire?.Invoke();
+            OnFire?.Invoke(packet);
         }
 
         private void HandleMovementTick(int playerIndex) {
