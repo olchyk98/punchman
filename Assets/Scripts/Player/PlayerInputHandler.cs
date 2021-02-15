@@ -26,7 +26,7 @@ namespace Player {
             
             for(var ma = 1; ma <= MatchManager.NUMBER_OF_PLAYERS; ++ma) {
                 HandleMovementTick(ma);
-                //HandleAttackTick(ma);
+                HandleAttackTick(ma);
             }
         }
 
@@ -68,7 +68,6 @@ namespace Player {
                     verticalValue = verticalDownValue;
                 }
             }
-            print(verticalValue);
 
             if(horizontalValue == 0f && verticalValue == 0f) return;
 
