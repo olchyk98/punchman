@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4904,11 +4904,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a513e734ec7e434e8a8001ca1f1a84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioController: {fileID: 3780885429097915348, guid: 632ed20fac72e35418baaa077122d0ca, type: 3}
-  AllPowerupMetadata:
-  - Type: 0
-    Color: {r: 0, g: 0.77254903, b: 0.6695949, a: 1}
-    Audio: {fileID: 8300000, guid: f905080cfa47d934e8463650d81e412a, type: 3}
-  - Type: 1
-    Color: {r: 0, g: 0.9150943, b: 0.01074907, a: 1}
-    Audio: {fileID: 8300000, guid: f39064ebc70abef418929600f01193be, type: 3}
+  myAudioController: {fileID: 0}
+  myPowerupMetas: []

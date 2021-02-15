@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: fd17f3ae863004249aacceedde510e98, type: 3}
+    - target: {fileID: 5359849717521769054, guid: 09a4eaed1c00afc4bab4588686ea0298, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5359849718305291180, guid: 09a4eaed1c00afc4bab4588686ea0298, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5359849718305291182, guid: 09a4eaed1c00afc4bab4588686ea0298, type: 3}
       propertyPath: m_Name
-      value: Cloud Animator Variant 1
+      value: Cloud Animator 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09a4eaed1c00afc4bab4588686ea0298, type: 3}
