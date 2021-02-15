@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3193193807074078031, guid: 98be1ace429f12647bc381c4472dbf22, type: 3}
       propertyPath: m_Name
-      value: Cloud Animator Variant
+      value: Cloud Animator 2
       objectReference: {fileID: 0}
     - target: {fileID: 3193193807074078031, guid: 98be1ace429f12647bc381c4472dbf22, type: 3}
       propertyPath: m_IsActive
