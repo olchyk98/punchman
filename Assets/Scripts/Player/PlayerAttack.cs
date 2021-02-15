@@ -52,13 +52,21 @@ namespace Player {
             return hit;
         }
 
-        public bool RunAttack(int i)
+        private void ClearTriggers()
         {
-            // TODO
+            foreach (var hash in myAttackAnimations)
+            {
+                myAnimator.ResetTrigger(hash);
+            }
+        }
+
+        private bool RunAttack(int i)
+        {
             if (i < attacks.Count && i >= 0)
             {
                 // Cooldown handling
                 if (CheckCooldown(i) || onCooldown) return false;
+                ClearTriggers();
                 SetCooldown(i, attacks[i].cooldown);
                 onCooldown = true;
                 StartCoroutine(RemoveCooldown(attacks[i].animationCooldown));
