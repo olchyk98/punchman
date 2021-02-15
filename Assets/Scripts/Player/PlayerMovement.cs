@@ -71,7 +71,7 @@ namespace Player {
         /// <param name="modifier">The amount to modify the jump height with</param>
         public void AddToJumpHeight(float modifier)
         {
-            myJumpHeight += jumpModifier;
+            myJumpHeight += modifier;
         }
 
         /// <summary>
