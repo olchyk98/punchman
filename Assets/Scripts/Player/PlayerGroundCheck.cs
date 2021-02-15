@@ -11,10 +11,12 @@ public class PlayerGroundCheck : MonoBehaviour
     }
 
     private void OnTriggerEnter2D() {
+        print("enter");
         isTouchingGround = true;
     }
 
     private void OnTriggerExit2D() {
+        print("exit");
         isTouchingGround = false;
     }
 }
