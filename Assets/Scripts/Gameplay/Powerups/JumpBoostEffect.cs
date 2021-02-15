@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Gameplay.Powerups
 {
-    public class JumpBoostEffect: IPowerup
+    public class JumpBoostEffect : IPowerup
     {
-        private const float JumpModifier = 2.0f;
-        private const int ActiveTime = 30;
+        private const float myJumpModifier = 2.0f;
+        private const int myActiveTime = 30;
         
         private bool myIsActive = true;
         
@@ -18,20 +18,19 @@ namespace Gameplay.Powerups
         {
             myImpactedMovement = player.GetComponent<PlayerMovement>();
             if (myIsActive)
-                myImpactedMovement.AddToJumpHeight(JumpModifier);
-            yield return new WaitForSeconds(ActiveTime);
+            {
+                myImpactedMovement.AddToJumpHeight(myJumpModifier);
+            }
+            yield return new WaitForSeconds(myActiveTime);
             CleanUp();
         }
 
 
         public void CleanUp()
         {
-            if (myIsActive)
-            {
-                myIsActive = false;
-                myImpactedMovement.AddToJumpHeight(JumpModifier * -1);
-            }
-
+            if (!myIsActive) return;
+            myIsActive = false;
+            myImpactedMovement.AddToJumpHeight(-myJumpModifier);
         }
     }
 }

@@ -18,11 +18,11 @@ namespace Gameplay.Powerups
         
         private PowerupTypes myPowerupType;
 
-        [SerializeField] private GameObject audioController;
-        [SerializeField] private PowerupMetadata[] AllPowerupMetadata;
+        [SerializeField] private GameObject myAudioController;
+        [SerializeField] private PowerupMetadata[] myPowerupMetas;
         public PowerupMetadata GetPowerupMetadataWithType(PowerupTypes type)
         {
-            return AllPowerupMetadata.First(m => m.Type == type);
+            return myPowerupMetas.First(m => m.Type == type);
         }
         
 
@@ -69,19 +69,18 @@ namespace Gameplay.Powerups
         {
             var powerupComponent = other.gameObject.GetComponent<PlayerPowerup>();
             // Check that the other colliding GameObject is a player.
-            if (powerupComponent == null)
-                return;
+            if (powerupComponent == null) return;
             IPowerup powerup = GetPowerUpFromType(myPowerupType);
             // Remove the effects of any previously held powerup.
             powerupComponent.CancelEffects();
             // Apply the new powerup
             powerupComponent.ApplyPowerup(powerup);
             // Play the audio for the power up
-            GameObject audio = Instantiate(audioController);
-            audio.GetComponent<PowerupSoundPlayback>().SetAudio(GetPowerupMetadataWithType(myPowerupType).Audio);
+            GameObject audio = Instantiate(myAudioController);
+            var powerupAudio = GetPowerupMetadataWithType(myPowerupType).Audio;
+            audio.GetComponent<PowerupSoundPlayback>().SetAudio(powerupAudio);
             // Tell the powerup spawner that its no longer there.
             OnPickUp?.Invoke();
-            // Remove itself.
             Destroy(gameObject);
         }
     }

@@ -12,7 +12,7 @@ namespace Gameplay.Powerups
         [SerializeField] private int spawnHeightAboveSpawner;
         
         private Vector3 mySpawnerPosition;
-        private bool _holdingSpawnedPowerup;
+        private bool myHoldingSpawnedPowerup;
 
         // Start is called before the first frame update
         private void Start()
@@ -54,9 +54,9 @@ namespace Gameplay.Powerups
             {
                 yield return new WaitForSeconds(3);
                 // There is no power up currently in the spawner area, lets toss one in there.
-                if (!_holdingSpawnedPowerup)
+                if (!myHoldingSpawnedPowerup)
                 {
-                    _holdingSpawnedPowerup = true;
+                    myHoldingSpawnedPowerup = true;
                     GameObject powerup = Instantiate(powerupPickUp, mySpawnerPosition, Quaternion.identity);
                     var powerupComponent = powerup.GetComponent<PowerupPickup>();
                     powerupComponent.SetPowerUpType(MakeRandomPowerupSelection());
@@ -71,7 +71,7 @@ namespace Gameplay.Powerups
         /// </summary>
         private void HandlePickUp()
         {
-            _holdingSpawnedPowerup = false;
+            myHoldingSpawnedPowerup = false;
         }
     }
 }
