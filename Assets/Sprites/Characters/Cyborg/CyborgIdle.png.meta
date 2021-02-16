@@ -116,10 +116,10 @@ TextureImporter:
       name: CyborgIdle_0
       rect:
         serializedVersion: 2
-        x: 36
+        x: 0
         y: 128
-        width: 55
-        height: 121
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +137,10 @@ TextureImporter:
       name: CyborgIdle_1
       rect:
         serializedVersion: 2
-        x: 166
+        x: 128
         y: 128
-        width: 53
-        height: 121
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: CyborgIdle_2
       rect:
         serializedVersion: 2
-        x: 292
+        x: 256
         y: 128
-        width: 55
-        height: 119
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: CyborgIdle_3
       rect:
         serializedVersion: 2
-        x: 419
+        x: 384
         y: 128
-        width: 56
-        height: 119
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,10 +200,10 @@ TextureImporter:
       name: CyborgIdle_4
       rect:
         serializedVersion: 2
-        x: 35
+        x: 0
         y: 0
-        width: 56
-        height: 117
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,10 +221,10 @@ TextureImporter:
       name: CyborgIdle_5
       rect:
         serializedVersion: 2
-        x: 163
+        x: 128
         y: 0
-        width: 56
-        height: 118
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +242,10 @@ TextureImporter:
       name: CyborgIdle_6
       rect:
         serializedVersion: 2
-        x: 292
+        x: 256
         y: 0
-        width: 55
-        height: 119
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,10 +263,10 @@ TextureImporter:
       name: CyborgIdle_7
       rect:
         serializedVersion: 2
-        x: 422
+        x: 384
         y: 0
-        width: 53
-        height: 121
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
