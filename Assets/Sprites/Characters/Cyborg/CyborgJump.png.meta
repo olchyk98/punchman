@@ -119,10 +119,10 @@ TextureImporter:
       name: CyborgJump_0
       rect:
         serializedVersion: 2
-        x: 36
+        x: 0
         y: 384
-        width: 55
-        height: 121
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: CyborgJump_1
       rect:
         serializedVersion: 2
-        x: 166
+        x: 128
         y: 384
-        width: 53
-        height: 109
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: CyborgJump_2
       rect:
         serializedVersion: 2
-        x: 296
-        y: 383
-        width: 44
-        height: 119
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +182,10 @@ TextureImporter:
       name: CyborgJump_3
       rect:
         serializedVersion: 2
-        x: 419
-        y: 396
-        width: 47
-        height: 106
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +203,10 @@ TextureImporter:
       name: CyborgJump_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 283
-        width: 56
-        height: 91
+        x: 0
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,10 +224,10 @@ TextureImporter:
       name: CyborgJump_5
       rect:
         serializedVersion: 2
-        x: 163
-        y: 268
-        width: 47
-        height: 106
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,10 +245,10 @@ TextureImporter:
       name: CyborgJump_6
       rect:
         serializedVersion: 2
-        x: 296
-        y: 255
-        width: 44
-        height: 119
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,10 +266,10 @@ TextureImporter:
       name: CyborgJump_7
       rect:
         serializedVersion: 2
-        x: 422
+        x: 384
         y: 256
-        width: 53
-        height: 109
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,10 +287,10 @@ TextureImporter:
       name: CyborgJump_8
       rect:
         serializedVersion: 2
-        x: 36
+        x: 0
         y: 128
-        width: 55
-        height: 121
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
