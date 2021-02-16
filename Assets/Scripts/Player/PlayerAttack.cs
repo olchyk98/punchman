@@ -20,21 +20,31 @@ namespace Player {
         private void Start()
         {
             myTransform = GetComponent<Transform>();
-            
+            myAnimator = GetComponent<Animator>();
+
             // Get all the hashes for faster animation calls
-            foreach (var aAttack in attacks)
+            foreach (var attackSpec in attacks)
             {
-                myAttackAnimations.Add(Animator.StringToHash(aAttack.playerAnimationTrigger));
+                var nameHash = Animator.StringToHash(
+                    attackSpec.playerAnimationTrigger
+                );
+
+
+                myAttackAnimations.Add(nameHash);
             }
         }
 
-        public RaycastHit2D AttackForward ()
+        public Tuple<Attack, RaycastHit2D> Attack (int attackIndex)
         {
+            if(!RunAttack(attackIndex)) return default;
+
+            var attackSpec = attacks[attackIndex];
             var actorX = myTransform.right.x;
+
             List<RaycastHit2D> hits = (Physics2D.RaycastAll(
                 myTransform.position,
                 Vector2.right * actorX,
-                distance: 10f
+                distance: attackSpec.maxDistance
             )).ToList();
 
             // Get first player element that's not ourselves
@@ -49,7 +59,7 @@ namespace Player {
 
             if(hit == default) return default;
 
-            return hit;
+            return Tuple.Create(attackSpec, hit);
         }
 
         private void ClearTriggers()
@@ -60,25 +70,31 @@ namespace Player {
             }
         }
 
+        /// <summary>
+        /// Checks the cooldown and runs attack animation.
+        /// <param name="i">Index of the targeted attack spec</param>
+        /// </summary>
+        /// <returns>Boolean that represents if player can use this attack</returns>
         private bool RunAttack(int i)
         {
-            if (i < attacks.Count && i >= 0)
+            if (i > attacks.Count || i < 0)
             {
-                // Cooldown handling
-                if (CheckCooldown(i) || onCooldown) return false;
-                ClearTriggers();
-                SetCooldown(i, attacks[i].cooldown);
-                onCooldown = true;
-                StartCoroutine(RemoveCooldown(attacks[i].animationCooldown));
-
-                // Attack execution
-                myAnimator.SetTrigger(myAttackAnimations[i]);
-
-                return true;
+                Debug.LogError(i + " is out of bounds in HitDetection script of " + gameObject.name);
+                return default;
             }
-            
-            Debug.LogError(i + " is out of bounds in HitDetection script of " + gameObject.name);
-            return false;
+
+            // Cooldown handling
+            if (CheckCooldown(i) || onCooldown) return false;
+
+            ClearTriggers();
+            SetCooldown(i, attacks[i].cooldown);
+            onCooldown = true;
+            StartCoroutine(RemoveCooldown(attacks[i].animationCooldown));
+
+            // Attack execution
+            myAnimator.SetTrigger(myAttackAnimations[i]);
+
+            return true;
         }
 
         #region Cooldown methods
@@ -110,7 +126,6 @@ namespace Player {
                 myAnimator.ResetTrigger(myAttackAnimations[i]);
                 myCooldown -= 1 << i;
             }
-                
         }
 
         /// <summary>

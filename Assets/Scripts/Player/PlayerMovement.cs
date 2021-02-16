@@ -4,12 +4,14 @@ namespace Player {
     [RequireComponent(typeof(PlayerInputHandler))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(PlayerAnimations))]
     public class PlayerMovement : MonoBehaviour
     {
         private Rigidbody2D myRb;
         private PlayerInputHandler myInputHandler;
         private Transform myTransform;
         private SpriteRenderer myRenderer;
+        private PlayerAnimations myAnimations;
         [SerializeField] private PlayerGroundCheck myGroundCheck;
 
         [SerializeField] [Range(5f, 20f)] private float myJumpHeight;
@@ -21,6 +23,17 @@ namespace Player {
             myTransform = GetComponent<Transform>();
             myInputHandler = GetComponent<PlayerInputHandler>();
             myRenderer = GetComponent<SpriteRenderer>();
+            myAnimations = GetComponent<PlayerAnimations>();
+        }
+
+        private void FixedUpdate()
+        {
+            if(myAnimations.Animator == default) return;
+
+            myAnimations.Animator.SetFloat(
+                "movementSpeed",
+                Mathf.Abs(myRb.velocity.x)
+            );
         }
 
         private void OnDestroy() {
@@ -45,6 +58,12 @@ namespace Player {
                     || (direction.y < 0f && !myGroundCheck.isTouchingGround))
             {
                 myRb.AddForce(new Vector2(0, myJumpHeight * direction.y), ForceMode2D.Impulse);
+
+                myAnimations.PlayAnimation(
+                    direction.y > 0
+                        ? "Jump"
+                        : "Jump"
+                );
             }
 
             // Handle x axis

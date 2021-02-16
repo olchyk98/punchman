@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Player {
@@ -9,6 +10,7 @@ namespace Player {
     [RequireComponent(typeof(PlayerHitDetection))]
     [RequireComponent(typeof(PlayerAttack))]
     [RequireComponent(typeof(PlayerPowerup))]
+    [RequireComponent(typeof(PlayerAnimations))]
     public class PlayerHandler : MonoBehaviour
     {
         private PlayerHealth myHealth;
@@ -16,6 +18,7 @@ namespace Player {
         private PlayerMovement myMovement;
         private PlayerInputHandler myInputHandler;
         private PlayerHitDetection myHitDetection;
+        private PlayerAnimations myAnimations;
 
         public UnityAction<RaycastHit2D, float> OnAttack;
 
@@ -32,6 +35,7 @@ namespace Player {
             myMovement = GetComponent<PlayerMovement>();
             myHealth = GetComponent<PlayerHealth>();
             myAttack = GetComponent<PlayerAttack>();
+            myAnimations = GetComponent<PlayerAnimations>();
 
             myInputHandler.OnMove += HandleMove;
             myInputHandler.OnFire += HandleAttack;
@@ -85,10 +89,12 @@ namespace Player {
         {
             if(!ValidateInputPacket(packet)) return;
 
-            RaycastHit2D hit = myAttack.AttackForward();
-            if(hit == default) return;
+            Tuple<Attack, RaycastHit2D> attackInfo = myAttack.Attack(0);
+            if(attackInfo == default) return;
 
-            OnAttack?.Invoke(hit, 10f*myAmplificationPercentage);
+            (Attack attackSpec, RaycastHit2D hit) = attackInfo;
+
+            OnAttack?.Invoke(hit, 10f * myAmplificationPercentage);
         }
     }
 }
