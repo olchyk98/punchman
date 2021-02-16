@@ -19,11 +19,11 @@ namespace Player {
             // Polls controllers at 120hz explicitly instead of 60.
             InputSystem.pollingFrequency = 120;
         }
-        
+
 
         public void Update()
         {
-            
+
             for(var ma = 1; ma <= MatchManager.NUMBER_OF_PLAYERS; ++ma) {
                 HandleMovementTick(ma);
                 HandleAttackTick(ma);
@@ -33,7 +33,7 @@ namespace Player {
         private void HandleAttackTick(int playerIndex)
         {
             if (!GetButton($"P{playerIndex}_Fire")) return;
-            
+
 
             var packet = new PlayerInputPacket(
                 PlayerActions.FIRE,

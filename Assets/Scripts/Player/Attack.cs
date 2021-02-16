@@ -9,4 +9,5 @@ public struct Attack
     public float cooldown;
     public float animationCooldown;
     public string playerAnimationTrigger;
+    public int maxDistance;
 }

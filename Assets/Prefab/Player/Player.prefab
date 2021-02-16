@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4286605445023464186}
   - component: {fileID: -2784663617735898791}
   - component: {fileID: 1205068027279919274}
+  - component: {fileID: -5893672952569204665}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -194,7 +195,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3130f231b20e462489777eafdd069fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacks: []
+  attacks:
+  - punchDirection: {x: 1, y: 0}
+    damage: 20
+    cooldown: 0.43
+    animationCooldown: 0.3
+    playerAnimationTrigger: Punch
+    maxDistance: 1
 --- !u!114 &4286605445023464186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +245,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5893672952569204665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962170370730785320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49290014301c74b459c6159cb72d2c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3962170371105139044
 GameObject:
   m_ObjectHideFlags: 0

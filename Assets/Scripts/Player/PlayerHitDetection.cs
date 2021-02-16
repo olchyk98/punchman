@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// TODO: REMOVE AS IT'S DEPRECATED
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Player {
