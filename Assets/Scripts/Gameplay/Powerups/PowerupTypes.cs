@@ -6,6 +6,7 @@
     public enum PowerupTypes
     {
         JUMP_BOOST,
-        SPEED_BOOST
+        SPEED_BOOST,
+        DAMAGE_BOOST
     }
 }

@@ -4904,5 +4904,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a513e734ec7e434e8a8001ca1f1a84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAudioController: {fileID: 0}
-  myPowerupMetas: []
+  myAudioController: {fileID: 3780885429097915348, guid: 632ed20fac72e35418baaa077122d0ca, type: 3}
+  myPowerupMetas:
+  - Type: 0
+    Color: {r: 0, g: 0.9056604, b: 0.87910235, a: 1}
+    Audio: {fileID: 8300000, guid: f905080cfa47d934e8463650d81e412a, type: 3}
+  - Type: 1
+    Color: {r: 0, g: 0.8396226, b: 0.10375574, a: 1}
+    Audio: {fileID: 8300000, guid: f39064ebc70abef418929600f01193be, type: 3}
+  - Type: 2
+    Color: {r: 0.8392157, g: 0, b: 0.035462998, a: 1}
+    Audio: {fileID: 8300000, guid: a154e1959cc9eef478aea3f7d13aa12c, type: 3}

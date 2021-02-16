@@ -24,6 +24,8 @@ namespace Player {
             get { return myHealth.Health; }
         }
 
+        public float myAmplificationPercentage = 1.0f;
+
         private void Start() {
             myInputHandler = GetComponent<PlayerInputHandler>();
             myHitDetection = GetComponent<PlayerHitDetection>();
@@ -86,7 +88,7 @@ namespace Player {
             RaycastHit2D hit = myAttack.AttackForward();
             if(hit == default) return;
 
-            OnAttack?.Invoke(hit, 10f);
+            OnAttack?.Invoke(hit, 10f*myAmplificationPercentage);
         }
     }
 }
