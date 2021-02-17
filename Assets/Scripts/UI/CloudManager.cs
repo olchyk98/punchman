@@ -35,6 +35,7 @@ public class CloudManager : MonoBehaviour
             cloudInstance.transform.position = Position;
             var anim = cloudInstance.GetComponent<Animation>();
             anim["Cloud Move"].speed = speed;
+            anim["Cloud Move"].time = Random.Range(0, anim["Cloud Move"].length);
         }
     }
 }
