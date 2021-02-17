@@ -40,7 +40,7 @@ namespace Player {
                 hasShield = false;
                 return;
             }
-            Health -= damage;
+
             if(collisionPoint != default)
             {
                 KnockBody(spec, collisionPoint);
