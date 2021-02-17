@@ -34,6 +34,8 @@ namespace Player {
         /// </param>
         public void ApplyDamage(Attack spec, Vector2 collisionPoint = default)
         {
+            KnockbackPercentage += spec.affection;
+
             if (hasShield)
             {
                 ShieldUsed?.Invoke();
