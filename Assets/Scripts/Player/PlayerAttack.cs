@@ -9,12 +9,13 @@ namespace Player {
     [RequireComponent(typeof(Animator))]
     public class PlayerAttack : MonoBehaviour
     {
-        [SerializeField] private List<Attack> attacks;
-        private List<int> myAttackAnimations = new List<int>();
-        private int myCooldown;
-
         private Transform myTransform;
         private Animator myAnimator;
+
+        [SerializeField] private List<Attack> attacks;
+        private List<int> myAttackAnimations = new List<int>();
+
+        private int myCooldown;
         private bool onCooldown;
 
         private void Start()
@@ -26,7 +27,7 @@ namespace Player {
             foreach (var attackSpec in attacks)
             {
                 var nameHash = Animator.StringToHash(
-                    attackSpec.playerAnimationTrigger
+                    attackSpec.animationTriggerName
                 );
 
 

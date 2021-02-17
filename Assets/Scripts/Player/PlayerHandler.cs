@@ -7,7 +7,6 @@ namespace Player {
     [RequireComponent(typeof(PlayerMovement))]
     [RequireComponent(typeof(PlayerHealth))]
     [RequireComponent(typeof(PlayerInputHandler))]
-    [RequireComponent(typeof(PlayerHitDetection))]
     [RequireComponent(typeof(PlayerAttack))]
     [RequireComponent(typeof(PlayerPowerup))]
     [RequireComponent(typeof(PlayerAnimations))]
@@ -17,21 +16,18 @@ namespace Player {
         private PlayerAttack myAttack;
         private PlayerMovement myMovement;
         private PlayerInputHandler myInputHandler;
-        private PlayerHitDetection myHitDetection;
         private PlayerAnimations myAnimations;
 
-        public UnityAction<RaycastHit2D, float> OnAttack;
+        public UnityAction<RaycastHit2D, Attack> OnAttack;
 
         public int Index { get; private set; }
-        public float Health {
-            get { return myHealth.Health; }
+        public float KnockbackPercentage {
+            get => myHealth.KnockbackPercentage;
         }
-
-        public float myAmplificationPercentage = 1.0f;
+        public float AmplificationPercentage = 1f;
 
         private void Start() {
             myInputHandler = GetComponent<PlayerInputHandler>();
-            myHitDetection = GetComponent<PlayerHitDetection>();
             myMovement = GetComponent<PlayerMovement>();
             myHealth = GetComponent<PlayerHealth>();
             myAttack = GetComponent<PlayerAttack>();
@@ -39,7 +35,6 @@ namespace Player {
 
             myInputHandler.OnMove += HandleMove;
             myInputHandler.OnFire += HandleAttack;
-            myHitDetection.OnPlayerHit += HandleHit;
         }
 
         /// <summary>
@@ -60,16 +55,16 @@ namespace Player {
         /// Applies specified damage to the player.
         /// Applies knockback effect to the player.
         /// </summary>
-        /// <param name="myIndex">
-        /// Damage points that will be applied to the player
+        /// <param name="spec">
+        /// Attack spec applied to the player.
         /// </param>
         /// <param name="collisionPoint">
         /// Vector2 of position where another player collided with the target.
         /// Can be default if damage wasn't applied by a player.
         /// </param>
-        public void ApplyDamage(float damage, Vector2 collisionPoint = default)
+        public void ApplyDamage(Attack spec, Vector2 collisionPoint = default)
         {
-            myHealth.ApplyDamage(damage, collisionPoint);
+            myHealth.ApplyDamage(spec, collisionPoint);
         }
 
         private void HandleMove(PlayerInputPacket packet)
@@ -78,11 +73,6 @@ namespace Player {
 
             if(packet.PlayerIndex != Index) return;
             myMovement.HandleMove(packet);
-        }
-
-        private void HandleHit(Vector2 collisionPoint)
-        {
-            ApplyDamage(10f, collisionPoint);
         }
 
         private void HandleAttack (PlayerInputPacket packet)
@@ -94,7 +84,7 @@ namespace Player {
 
             (Attack attackSpec, RaycastHit2D hit) = attackInfo;
 
-            OnAttack?.Invoke(hit, 10f * myAmplificationPercentage);
+            OnAttack?.Invoke(hit, attackSpec);
         }
     }
 }

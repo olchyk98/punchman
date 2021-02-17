@@ -41,13 +41,13 @@ namespace Gameplay {
             }
         }
 
-        private void HandlePlayerAttack(RaycastHit2D hit, float damage)
+        private void HandlePlayerAttack(RaycastHit2D hit, Attack spec)
         {
             var target = hit.collider.gameObject;
             var targetHandler = target.GetComponent<PlayerHandler>();
             if(targetHandler == null) return;
 
-            targetHandler.ApplyDamage(damage, hit.point);
+            targetHandler.ApplyDamage(spec, hit.point);
         }
     }
 }
