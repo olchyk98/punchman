@@ -39,6 +39,8 @@ namespace Gameplay.Powerups
                     return new SpeedBoostEffect();
                 case PowerupTypes.DAMAGE_BOOST:
                     return new DamageBoostEffect();
+                case PowerupTypes.SHIELD:
+                    return new ShieldEffect();
             }
             throw new NotImplementedException("There is no powerup for this yet lmao");
         }
