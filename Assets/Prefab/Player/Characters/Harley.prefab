@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 1205068027279919274}
   - component: {fileID: -5893672952569204665}
   m_Layer: 0
-  m_Name: Cyborg
+  m_Name: Harley
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 058e6f8026dd84594abd5d82a06cc250, type: 3}
+  m_Sprite: {fileID: 4938622034475341434, guid: d291650ebfdd84ca7bdadb4f40899cc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -253,12 +253,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimations:
-    Kick: {fileID: 7400000, guid: e4e95c1e91b474c47b923dbe3dae8c9f, type: 2}
-    Punch: {fileID: 7400000, guid: 5f196fee57d9948efade6c0df3d4e5d4, type: 2}
-    Jump: {fileID: 7400000, guid: 9ea6f0c1bfeab4e04987f98f44e69fab, type: 2}
-    Move: {fileID: 7400000, guid: 1562ac1ed87aa4d538be3649dc4d9f6c, type: 2}
-    Hit: {fileID: 7400000, guid: 53f775d73aa4f486495903c148235191, type: 2}
-    Idle: {fileID: 7400000, guid: a91ba31937807497cb4f5574d184fd4c, type: 2}
+    Kick: {fileID: 7400000, guid: 8ac6f0c2799dd47f29ee7201cd41348e, type: 2}
+    Punch: {fileID: 7400000, guid: f05c4d4c524d146d1838e61b9ac61835, type: 2}
+    Jump: {fileID: 7400000, guid: 285074747c6474013a19a7e3739ed632, type: 2}
+    Move: {fileID: 7400000, guid: d9d7e770b50494cc8940fbf1c465e5c4, type: 2}
+    Hit: {fileID: 7400000, guid: 80da34a726ec74074a2195c7f1d6e039, type: 2}
+    Idle: {fileID: 7400000, guid: 3424bf280da44476dac86af33666f5fc, type: 2}
 --- !u!1 &3962170371105139044
 GameObject:
   m_ObjectHideFlags: 0
