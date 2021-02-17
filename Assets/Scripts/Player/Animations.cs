@@ -1,9 +1,10 @@
 using System;
+using UnityEngine;
 
 namespace Player
 {
     [Serializable]
-    public struct TargetedAnimations
+    public struct Animations
     {
         [SerializeField] public AnimationClip Kick;
         [SerializeField] public AnimationClip Punch;

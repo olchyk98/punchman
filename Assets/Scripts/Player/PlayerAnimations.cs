@@ -8,7 +8,7 @@ namespace Player
         public Animator Animator { get; private set; } = default;
         private AnimatorOverrideController myAnimatorOverrider;
 
-        [SerializeField] private TargetedAnimations myAnimations;
+        [SerializeField] private Animations myAnimations;
 
         private void Start()
         {
