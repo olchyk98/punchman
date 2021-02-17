@@ -201,7 +201,13 @@ MonoBehaviour:
     cooldown: 0.43
     animationCooldown: 0.3
     animationTriggerName: Punch
-    maxDistance: 34
+    maxDistance: 5
+  - direction: {x: 1, y: 0}
+    affection: 1.6
+    cooldown: 3
+    animationCooldown: 0.3
+    animationTriggerName: Kick
+    maxDistance: 3
 --- !u!114 &4286605445023464186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7719f227aaa8f45faaa1441b5a1d9426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasShield: 0
   KnockbackPercentage: 1
 --- !u!114 &-2784663617735898791
 MonoBehaviour:
