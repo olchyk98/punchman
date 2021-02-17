@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 1205068027279919274}
   - component: {fileID: -5893672952569204665}
   m_Layer: 0
-  m_Name: Alien
+  m_Name: Beast
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4938622034475341434, guid: d291650ebfdd84ca7bdadb4f40899cc8, type: 3}
+  m_Sprite: {fileID: 3310984575851037447, guid: 2fe8c8c74965f4078b91a3fc42f88868, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -253,12 +253,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimations:
-    Kick: {fileID: 7400000, guid: 8ac6f0c2799dd47f29ee7201cd41348e, type: 2}
-    Punch: {fileID: 7400000, guid: f05c4d4c524d146d1838e61b9ac61835, type: 2}
-    Jump: {fileID: 7400000, guid: 285074747c6474013a19a7e3739ed632, type: 2}
-    Move: {fileID: 7400000, guid: d9d7e770b50494cc8940fbf1c465e5c4, type: 2}
-    Hit: {fileID: 7400000, guid: 80da34a726ec74074a2195c7f1d6e039, type: 2}
-    Idle: {fileID: 7400000, guid: 3424bf280da44476dac86af33666f5fc, type: 2}
+    Kick: {fileID: 7400000, guid: 7c0b229af42454083a7b64726353ab44, type: 2}
+    Punch: {fileID: 7400000, guid: f312926f5e4e14522b3f2627e1ff1e09, type: 2}
+    Jump: {fileID: 7400000, guid: 17e65df4e57d74d8480727016cff8cc6, type: 2}
+    Move: {fileID: 7400000, guid: 6b77228a4d3d24f4491a8a3a5a399e4d, type: 2}
+    Hit: {fileID: 7400000, guid: bc51736dfa3064a239b1fd919064b21a, type: 2}
+    Idle: {fileID: 7400000, guid: 84ed2e1a828404b2a92d9e5de228b96d, type: 2}
 --- !u!1 &3962170371105139044
 GameObject:
   m_ObjectHideFlags: 0
