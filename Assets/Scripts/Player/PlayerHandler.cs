@@ -34,7 +34,7 @@ namespace Player {
             myAnimations = GetComponent<PlayerAnimations>();
 
             myInputHandler.OnMove += HandleMove;
-            myInputHandler.OnFire += HandleAttack;
+            myInputHandler.OnFireRegular += HandleAttack;
         }
 
         /// <summary>

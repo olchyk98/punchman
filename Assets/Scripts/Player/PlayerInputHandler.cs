@@ -10,7 +10,8 @@ namespace Player {
     public class PlayerInputHandler : MonoBehaviour
     {
         public UnityAction<PlayerInputPacket> OnMove;
-        public UnityAction<PlayerInputPacket> OnFire;
+        public UnityAction<PlayerInputPacket> OnFireRegular;
+        public UnityAction<PlayerInputPacket> OnFireSpecial;
 
         private float myMinimumControllerAxis = 0.15f;
 
@@ -27,7 +28,22 @@ namespace Player {
             for(var ma = 1; ma <= MatchManager.NUMBER_OF_PLAYERS; ++ma) {
                 HandleMovementTick(ma);
                 HandleAttackTick(ma);
+                HandleSpecialAttackTick(ma);
             }
+        }
+        
+        private void HandleSpecialAttackTick(int playerIndex)
+        {
+            if (!GetButton($"P{playerIndex}_SpecialFire")) return;
+
+
+            var packet = new PlayerInputPacket(
+                PlayerActions.FIRE,
+                playerIndex,
+                new Vector2()
+            );
+
+            OnFireSpecial?.Invoke(packet);
         }
 
         private void HandleAttackTick(int playerIndex)
@@ -41,7 +57,7 @@ namespace Player {
                 new Vector2()
             );
 
-            OnFire?.Invoke(packet);
+            OnFireRegular?.Invoke(packet);
         }
 
         private float KeyboardOrControllerSelectionAxis(string axisName)
