@@ -10,13 +10,13 @@ namespace Gameplay.Powerups
         private bool myIsActive = true;
         private PlayerHandler myPlayerHandler;
         private float myAmplifier = 0.25f;
-        
+
         public IEnumerator ScheduleEffect(GameObject player)
         {
             if (myIsActive)
             {
                 myPlayerHandler = player.GetComponent<PlayerHandler>();
-                myPlayerHandler.myAmplificationPercentage += myAmplifier;
+                myPlayerHandler.AmplificationPercentage += myAmplifier;
             }
             yield return new WaitForSeconds(ActiveTime);
             CleanUp();
@@ -26,7 +26,7 @@ namespace Gameplay.Powerups
         {
             if (!myIsActive) return;
             myIsActive = false;
-            myPlayerHandler.myAmplificationPercentage -= myAmplifier;
+            myPlayerHandler.AmplificationPercentage -= myAmplifier;
         }
     }
 }

@@ -1,13 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-[Serializable]
-public struct Attack
-{ 
-    public Vector2 punchDirection; // Left to right.
-    public float damage;
-    public float cooldown;
-    public float animationCooldown;
-    public string playerAnimationTrigger;
-    public int maxDistance;
+namespace Player
+{
+    [Serializable]
+    public struct Attack
+    {
+        public Vector2 direction;
+        [Range(.1f, 3f)]
+        public float affection;
+        public float cooldown;
+        public float animationCooldown;
+        public string animationTriggerName;
+        [Range(.1f, 50f)]
+        public int maxDistance;
+    }
 }

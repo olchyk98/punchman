@@ -17,6 +17,8 @@ namespace Player {
         [SerializeField] [Range(5f, 20f)] private float myJumpHeight;
         [SerializeField] [Range(6f, 15f)] private float mySpeed;
 
+        private bool hasStopped;
+
         private void Start()
         {
             myRb = GetComponent<Rigidbody2D>();
@@ -30,10 +32,16 @@ namespace Player {
         {
             if(myAnimations.Animator == default) return;
 
-            myAnimations.Animator.SetFloat(
-                "movementSpeed",
-                Mathf.Abs(myRb.velocity.x)
-            );
+            if(!hasStopped)
+            {
+                hasStopped = true;
+            } else
+            {
+                myAnimations.Animator.SetBool(
+                    "isMoving",
+                    false
+                );
+            }
         }
 
         private void OnDestroy() {
@@ -59,11 +67,10 @@ namespace Player {
             {
                 myRb.AddForce(new Vector2(0, myJumpHeight * direction.y), ForceMode2D.Impulse);
 
-                myAnimations.PlayAnimation(
-                    direction.y > 0
-                        ? "Jump"
-                        : "Jump"
-                );
+                if(direction.y > 0)
+                {
+                    myAnimations.PlayAnimation("Jump");
+                }
             }
 
             // Handle x axis
@@ -73,6 +80,15 @@ namespace Player {
 
             // Flip model
             HandleRotation(direction.x);
+
+            // Handle Animation
+            myAnimations.Animator.SetBool(
+                "isMoving",
+                true
+            );
+
+
+            hasStopped = false;
         }
 
         private void HandleRotation(float x)
