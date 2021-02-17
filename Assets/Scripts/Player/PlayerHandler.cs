@@ -34,7 +34,7 @@ namespace Player {
             myAnimations = GetComponent<PlayerAnimations>();
 
             myInputHandler.OnMove += HandleMove;
-            myInputHandler.OnFireRegular += HandleAttack;
+            myInputHandler.OnFire += HandleAttack;
         }
 
         /// <summary>
@@ -75,11 +75,11 @@ namespace Player {
             myMovement.HandleMove(packet);
         }
 
-        private void HandleAttack (PlayerInputPacket packet)
+        private void HandleAttack (PlayerInputPacket packet, AttackTypes type)
         {
             if(!ValidateInputPacket(packet)) return;
 
-            Tuple<Attack, RaycastHit2D> attackInfo = myAttack.Attack(0);
+            Tuple<Attack, RaycastHit2D> attackInfo = myAttack.Attack((int) type);
             if(attackInfo == default) return;
 
             (Attack attackSpec, RaycastHit2D hit) = attackInfo;

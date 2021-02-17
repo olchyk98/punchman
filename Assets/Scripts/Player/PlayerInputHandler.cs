@@ -10,8 +10,7 @@ namespace Player {
     public class PlayerInputHandler : MonoBehaviour
     {
         public UnityAction<PlayerInputPacket> OnMove;
-        public UnityAction<PlayerInputPacket> OnFireRegular;
-        public UnityAction<PlayerInputPacket> OnFireSpecial;
+        public UnityAction<PlayerInputPacket, AttackTypes> OnFire;
 
         private float myMinimumControllerAxis = 0.15f;
 
@@ -31,33 +30,25 @@ namespace Player {
                 HandleSpecialAttackTick(ma);
             }
         }
-        
-        private void HandleSpecialAttackTick(int playerIndex)
-        {
-            if (!GetButton($"P{playerIndex}_SpecialFire")) return;
-
-
-            var packet = new PlayerInputPacket(
-                PlayerActions.FIRE,
-                playerIndex,
-                new Vector2()
-            );
-
-            OnFireSpecial?.Invoke(packet);
-        }
 
         private void HandleAttackTick(int playerIndex)
         {
-            if (!GetButton($"P{playerIndex}_Fire")) return;
-
+            bool isDefault = GetButton($"P{playerIndex}_Fire");
+            bool isSpecial = GetButton($"P{playerIndex}_SpecialFire");
+            
+            int type = 
+                isDefault ? (int)AttackTypes.DEFAULT :
+                isSpecial ? (int)AttackTypes.SPECIAL :
+                -1;
+            if (type < 0) return;
 
             var packet = new PlayerInputPacket(
                 PlayerActions.FIRE,
                 playerIndex,
                 new Vector2()
             );
-
-            OnFireRegular?.Invoke(packet);
+            
+            OnFire?.Invoke(packet, (AttackTypes) type);
         }
 
         private float KeyboardOrControllerSelectionAxis(string axisName)
