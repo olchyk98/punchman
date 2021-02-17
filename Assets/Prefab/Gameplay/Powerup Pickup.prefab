@@ -4915,3 +4915,6 @@ MonoBehaviour:
   - Type: 2
     Color: {r: 0.8392157, g: 0, b: 0.035462998, a: 1}
     Audio: {fileID: 8300000, guid: a154e1959cc9eef478aea3f7d13aa12c, type: 3}
+  - Type: 3
+    Color: {r: 0, g: 0.3374351, b: 0.8392157, a: 1}
+    Audio: {fileID: 8300000, guid: 506ddbf94902a404cbf2846188d60926, type: 3}

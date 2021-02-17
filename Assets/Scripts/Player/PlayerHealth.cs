@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Player {
     public class PlayerHealth : MonoBehaviour
@@ -8,6 +9,9 @@ namespace Player {
 
         public static float MaxKnockbackForce = 100f;
         public static float MaxHealth = 100f;
+
+        public bool hasShield;
+        public UnityAction ShieldUsed;
 
         public float Health { get; private set; }
 
@@ -31,6 +35,12 @@ namespace Player {
         /// </param>
         public void ApplyDamage(float damage, Vector2 collisionPoint = default)
         {
+            if (hasShield)
+            {
+                ShieldUsed?.Invoke();
+                hasShield = false;
+                return;
+            }
             Health -= damage;
             if(collisionPoint != default)
             {
