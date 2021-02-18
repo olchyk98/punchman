@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimations:
-    Kick: {fileID: 7400000, guid: eb448d3670445b340875c2413592acc6, type: 2}
+    Kick: {fileID: 0}
     Punch: {fileID: 7400000, guid: 166978aa9d33c8a43949ee6483fb4a2d, type: 2}
     Jump: {fileID: 7400000, guid: 17e65df4e57d74d8480727016cff8cc6, type: 2}
     Move: {fileID: 7400000, guid: 6b77228a4d3d24f4491a8a3a5a399e4d, type: 2}
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3962170370730785320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e42003ccac764abb8eadead0c9aeb6c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7325274c3d70b604e9178bb67eba306b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myPunchEffects:
