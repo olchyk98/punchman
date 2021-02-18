@@ -209,6 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7719f227aaa8f45faaa1441b5a1d9426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stunTime: 0.5
+  attackSplashPrefab: {fileID: 6715695030476598322, guid: d29c2af792a4846dcae1026c6b439a13, type: 3}
   hasShield: 0
   KnockbackPercentage: 1
 --- !u!114 &-2784663617735898791
