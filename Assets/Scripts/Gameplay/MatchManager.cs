@@ -5,11 +5,11 @@ using Player;
 namespace Gameplay {
     public class MatchManager : MonoBehaviour
     {
-        
+
         [SerializeField] private List<Transform> mySpawnPoints;
         public static int NUMBER_OF_PLAYERS = 2;
         public Dictionary<int, GameObject> playerPrefabs = new Dictionary<int, GameObject>();
-        
+
         // A list containing all of the players in game
         private List<PlayerHandler> allPlayers = new List<PlayerHandler>();
 
