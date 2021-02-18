@@ -21,6 +21,7 @@ namespace Player {
         private PlayerSoundSource mySoundSource;
 
         public UnityAction<RaycastHit2D, Vector2, Attack> OnAttack;
+        public UnityAction<int, float> OnKnockbackUpdate;
 
         public int Index { get; private set; }
         public float KnockbackPercentage {
@@ -68,6 +69,7 @@ namespace Player {
         public void ApplyDamage(Attack spec, Vector2 direction, Vector2 collisionPoint = default)
         {
             myHealth.ApplyDamage(spec, direction, collisionPoint);
+            OnKnockbackUpdate?.Invoke(Index, myHealth.KnockbackPercentage);
         }
 
         private void HandleMove(PlayerInputPacket packet)
