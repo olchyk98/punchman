@@ -15,6 +15,7 @@ namespace Gameplay {
 
         private void Start()
         {
+            playerPrefabs = GameManager.characters;
             SpawnPlayers();
         }
 
