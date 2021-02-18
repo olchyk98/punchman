@@ -20,7 +20,7 @@ namespace Player {
         private PlayerAnimations myAnimations;
         private PlayerSoundSource mySoundSource;
 
-        public UnityAction<RaycastHit2D, Attack> OnAttack;
+        public UnityAction<RaycastHit2D, Vector2, Attack> OnAttack;
 
         public int Index { get; private set; }
         public float KnockbackPercentage {
@@ -65,9 +65,9 @@ namespace Player {
         /// Vector2 of position where another player collided with the target.
         /// Can be default if damage wasn't applied by a player.
         /// </param>
-        public void ApplyDamage(Attack spec, Vector2 collisionPoint = default)
+        public void ApplyDamage(Attack spec, Vector2 direction, Vector2 collisionPoint = default)
         {
-            myHealth.ApplyDamage(spec, collisionPoint);
+            myHealth.ApplyDamage(spec, direction, collisionPoint);
         }
 
         private void HandleMove(PlayerInputPacket packet)
@@ -82,12 +82,12 @@ namespace Player {
         {
             if(!ValidateInputPacket(packet)) return;
 
-            Tuple<Attack, RaycastHit2D> attackInfo = myAttack.Attack((int) type);
+            Tuple<Attack, Vector2, RaycastHit2D> attackInfo = myAttack.Attack((int) type);
             if(attackInfo == default) return;
 
-            (Attack attackSpec, RaycastHit2D hit) = attackInfo;
+            (Attack attackSpec, Vector2 direction, RaycastHit2D hit) = attackInfo;
             mySoundSource.PlayPunchEffect();
-            OnAttack?.Invoke(hit, attackSpec);
+            OnAttack?.Invoke(hit, direction, attackSpec);
         }
     }
 }

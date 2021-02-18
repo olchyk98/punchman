@@ -4,8 +4,12 @@ using UnityEngine.Events;
 namespace Player {
     public class PlayerHealth : MonoBehaviour
     {
+        [SerializeField] private float stunTime = 0.5f;
+        
         private Rigidbody2D myRb;
         private Transform myTransform;
+        private PlayerMovement myMovement;
+        private PlayerAttack myAttack;
 
         public static float MaxKnockbackForce = 100f;
         public static float MaxHealth = 100f;
@@ -19,6 +23,8 @@ namespace Player {
         private void Start() {
             myRb = GetComponent<Rigidbody2D>();
             myTransform = GetComponent<Transform>();
+            myMovement = GetComponent<PlayerMovement>();
+            myAttack = GetComponent<PlayerAttack>();
         }
 
         /// <summary>
@@ -32,7 +38,7 @@ namespace Player {
         /// Vector2 of position where another player collided with the target.
         /// Can be default if damage wasn't applied by a player.
         /// </param>
-        public void ApplyDamage(Attack spec, Vector2 collisionPoint = default)
+        public void ApplyDamage(Attack spec, Vector2 direction, Vector2 collisionPoint = default)
         {
             KnockbackPercentage += spec.affection;
 
@@ -45,7 +51,7 @@ namespace Player {
 
             if(collisionPoint != default)
             {
-                KnockBody(spec, collisionPoint);
+                KnockBody(spec, direction, collisionPoint);
             }
         }
 
@@ -60,22 +66,19 @@ namespace Player {
         /// Vector2 of position where another player collided with the target.
         /// Can be default if damage wasn't applied by a player.
         /// </param>
-        private void KnockBody(Attack spec, Vector2 collisionPoint)
+        private void KnockBody(Attack spec, Vector2 direction, Vector2 collisionPoint)
         {
+            StartCoroutine(myAttack.Stun(stunTime));
+            StartCoroutine(myMovement.Stun(stunTime));
+            
             // Construct force vector
             var position = myTransform.position;
-
+            
             float forceX = (spec.direction.x == 0f)
                 ? 0
                 : position.x > collisionPoint.x ? 1 : -1;
 
-            float forceY = (spec.direction.y == 0f)
-                ? 0
-                : position.y > collisionPoint.y ? -1 : 1;
-
-            var forceVector = new Vector2(forceX, forceY) * (KnockbackPercentage * myRegularKnockback);
-
-            // Apply relative force
+            var forceVector = new Vector2(forceX * direction.x, direction.y) * (KnockbackPercentage * myRegularKnockback);
             myRb.AddForce(forceVector, ForceMode2D.Impulse);
         }
     }
