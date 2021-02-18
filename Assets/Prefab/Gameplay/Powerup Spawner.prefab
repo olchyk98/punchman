@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupPickUp: {fileID: 7958859609787629742, guid: 231ad820d209d044cbdfd4fa7b21a0fb, type: 3}
-  baseRespawnDelay: 10
-  maxRandomExtraRespawnDelay: 5
-  spawnTypes: 01000000
-  spawnHeightAboveSpawner: 2
+  baseRespawnDelay: 26.8
+  maxRandomExtraRespawnDelay: 7.64
+  spawnTypes: 01000000000000000200000003000000
+  spawnHeightAboveSpawner: 1

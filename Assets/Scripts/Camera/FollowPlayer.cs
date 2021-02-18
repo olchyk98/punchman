@@ -24,6 +24,8 @@ public class FollowPlayer : MonoBehaviour
         if (players.Length < 2) return;
         var player1 = players[0].transform.position;
         var player2 = players[1].transform.position;
-        myTransform.position = Vector3.Lerp(player1, player2, 0.5f);
+        var newPosition = Vector3.Lerp(player1, player2, 0.5f);
+        newPosition.z = -10;
+        myTransform.position = newPosition;
     }
 }
