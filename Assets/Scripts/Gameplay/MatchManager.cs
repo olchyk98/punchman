@@ -45,7 +45,8 @@ namespace Gameplay {
                 playerHandler.OnAttack += HandlePlayerAttack;
                 playerHandler.OnKnockbackUpdate += RequestToRerenderStatHud;
                 playerHandler.OnGameOver += HandleGameOver;
-                
+
+                FollowPlayer.AddPlayer(playerInstance);
 
                 // Append it to the list of players
                 allPlayers.Add(playerHandler);
