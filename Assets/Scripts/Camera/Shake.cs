@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Shake : MonoBehaviour
 {
-    public Vector3 maximumTranslationShake = Vector3.one * 0.5f;
+    public Vector2 maximumTranslationShake = Vector3.one * 0.5f;
     public float frequency = 25;
-    private float myTrauma;
+    private static float myTrauma;
     private float mySeed;
+    private Transform myTransform;
 
     /// <summary>
     /// Sets the seed for perlin noise
@@ -13,6 +16,11 @@ public class Shake : MonoBehaviour
     private void Awake()
     {
         mySeed = Random.value;
+    }
+
+    private void Start()
+    {
+        myTransform = GetComponent<Transform>();
     }
 
     /// <summary>
@@ -28,13 +36,15 @@ public class Shake : MonoBehaviour
         if (myTrauma == 0)
             return;
 
-        var shakeAmount = maximumTranslationShake.x * (myTrauma * myTrauma) / 100;
+        var shakeAmountX = maximumTranslationShake.x * (myTrauma * myTrauma) / 100;
+        var shakeAmountY = maximumTranslationShake.y * (myTrauma * myTrauma) / 100;
         var x = Mathf.PerlinNoise(mySeed, Time.time * frequency) * 2 - 1;
         var y = Mathf.PerlinNoise(mySeed + 1, Time.time * frequency) * 2 - 1;
 
-        transform.localPosition = new Vector2(
-                x * shakeAmount,
-                y * shakeAmount);
+        myTransform.localPosition = new Vector3(
+                x * shakeAmountX,
+                y * shakeAmountY,
+                myTransform.localPosition.z);
 
         myTrauma = Mathf.Clamp(myTrauma - aRecoverySpeed * Time.deltaTime, 0, 10);
     }
@@ -43,7 +53,7 @@ public class Shake : MonoBehaviour
     /// Adds trauma and makes sure it gets clamped in a way that makes sense.
     /// </summary>
     /// <param name="aTrauma">The amount of trauma you'd like to add</param>
-    public void AddTrauma(float aTrauma)
+    public static void AddTrauma(float aTrauma)
     {
         myTrauma = Mathf.Clamp(myTrauma + aTrauma, 0, 10);
     }
