@@ -2602,10 +2602,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPrefabs:
-  - myName: 
-    myObject: {fileID: 0}
-  - myName: 
-    myObject: {fileID: 0}
+  - myName: Cyborg
+    myObject: {fileID: 3962170370730785320, guid: 5772e7a4658a446388522158558c1b04, type: 3}
+  - myName: Harley
+    myObject: {fileID: 3962170370730785320, guid: fdd68eda67ee247fd967e5ae212ad6cd, type: 3}
+  - myName: Beast
+    myObject: {fileID: 3962170370730785320, guid: 97301042f8d354e129c80808c3b1b32e, type: 3}
 --- !u!4 &1329476287
 Transform:
   m_ObjectHideFlags: 0
