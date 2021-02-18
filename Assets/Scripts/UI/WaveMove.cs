@@ -21,7 +21,9 @@ public class WaveMove : MonoBehaviour
         myCurrentAngle += mySpeed * Time.deltaTime;
 
         if (myCurrentAngle >= myMax)
+        {
             myCurrentAngle = 0;
+        }
 
         var x = Mathf.Cos((float)myCurrentAngle);
         var y = Mathf.Sin((float)myCurrentAngle);
