@@ -25,8 +25,7 @@ public class GameUnityInterface : MonoBehaviour
 
     public void Reset()
     {
-        GameManager.characters = new Dictionary<int, GameObject>();
-        GameManager.selectedMap = -1;
+        GameManager.ResetState();
         i = 0;
 
     }
