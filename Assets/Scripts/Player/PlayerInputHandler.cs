@@ -27,7 +27,6 @@ namespace Player {
             for(var ma = 1; ma <= MatchManager.NUMBER_OF_PLAYERS; ++ma) {
                 HandleMovementTick(ma);
                 HandleAttackTick(ma);
-                HandleSpecialAttackTick(ma);
             }
         }
 
