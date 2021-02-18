@@ -1805,6 +1805,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 81
       objectReference: {fileID: 0}
+    - target: {fileID: 2058161372694614875, guid: 711f6cf29b55a406980b382a82b08d1f, type: 3}
+      propertyPath: m_fontSize
+      value: 69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058161372694614875, guid: 711f6cf29b55a406980b382a82b08d1f, type: 3}
+      propertyPath: m_margin.z
+      value: -395.5725
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058161372694614875, guid: 711f6cf29b55a406980b382a82b08d1f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 69
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934328748050217815, guid: 711f6cf29b55a406980b382a82b08d1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711f6cf29b55a406980b382a82b08d1f, type: 3}
 --- !u!1 &819128041 stripped
@@ -2444,7 +2460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5018033907984752785, guid: b6eaf5b8443f14efebf05dd79a924185, type: 3}
       propertyPath: orthographic size
-      value: 6.38
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5018033907984752785, guid: b6eaf5b8443f14efebf05dd79a924185, type: 3}
       propertyPath: m_BackGroundColor.b

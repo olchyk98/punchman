@@ -26,4 +26,10 @@ public static class GameManager
         SceneManager.LoadScene(selectedMap);
     }
 
+    public static void ResetState()
+    {
+        characters = new Dictionary<int, GameObject>();
+        selectedMap = -1;
+    }
+
 }

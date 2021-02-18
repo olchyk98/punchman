@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
+using TMPro;
 using UI;
 using UnityEngine.SceneManagement;
 
@@ -10,16 +12,19 @@ namespace Gameplay {
     {
         [SerializeField] private GameObject myHud;
         [SerializeField] private List<Transform> mySpawnPoints;
+        [SerializeField] private GameObject myWinningText;
         public static int NUMBER_OF_PLAYERS = 2;
         public Dictionary<int, GameObject> playerPrefabs = new Dictionary<int, GameObject>();
 
         // A list containing all of the players in game
         private List<PlayerHandler> allPlayers = new List<PlayerHandler>();
         private HUDManager myHudManager;
+        private TextMeshProUGUI myWinningTextComponent;
         
         
         private void Start()
         {
+            myWinningTextComponent = myWinningText.GetComponent<TextMeshProUGUI>();
             playerPrefabs = GameManager.characters;
             SpawnPlayers();
             myHudManager = myHud.GetComponent<HUDManager>();
@@ -46,7 +51,7 @@ namespace Gameplay {
                 playerHandler.OnKnockbackUpdate += RequestToRerenderStatHud;
                 playerHandler.OnGameOver += HandleGameOver;
 
-                FollowPlayer.AddPlayer(playerInstance);
+                FollowPlayer.SetPlayer(f-1, playerInstance);
 
                 // Append it to the list of players
                 allPlayers.Add(playerHandler);
@@ -67,13 +72,28 @@ namespace Gameplay {
             myHudManager.UpdateStat(playerIndex, $"{newKnockback}%");
         }
 
+        private int OppositePlayerIndex(int playerIndex)
+        {
+            switch (playerIndex)
+            {
+                case 1:
+                    return 2;
+                case 2:
+                    return 1;
+            }
+            throw new NotImplementedException("No index.");
+        }
+
         private void HandleGameOver(int playerIndex)
         {
             StartCoroutine(LoadLevelAfterDelay(6));
+            myWinningText.SetActive(true);
+            myWinningTextComponent.text = $"Player {OppositePlayerIndex(playerIndex)} won!";
         }
 
         IEnumerator LoadLevelAfterDelay(float time)
         {
+            GameManager.ResetState();
             yield return new WaitForSeconds(time);
             SceneManager.LoadScene("Main Menu");
         }

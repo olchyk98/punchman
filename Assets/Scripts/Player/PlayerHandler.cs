@@ -100,6 +100,11 @@ namespace Player {
 
       private void HandleGameOver()
       {
+          transform.position = new Vector3(0,0,0);
+          GetComponent<SpriteRenderer>().enabled = false;
+          GetComponent<Rigidbody2D>().simulated = false;
+          GetComponent<Collider2D>().enabled = false;
+          StartCoroutine(GetComponent<PlayerMovement>().Stun(69));
           OnGameOver?.Invoke(Index);
       }  
     }
