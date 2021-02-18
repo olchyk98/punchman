@@ -32,8 +32,8 @@ namespace Player {
 
         private void HandleAttackTick(int playerIndex)
         {
-            bool isDefault = GetButton($"P{playerIndex}_Fire");
-            bool isSpecial = GetButton($"P{playerIndex}_SpecialFire");
+            bool isDefault = KeyboardOrControllerSelectionButton($"P{playerIndex}_Fire");
+            bool isSpecial = KeyboardOrControllerSelectionButton($"P{playerIndex}_SpecialFire");
             
             int type = 
                 isDefault ? (int)AttackTypes.DEFAULT :
@@ -48,6 +48,11 @@ namespace Player {
             );
             
             OnFire?.Invoke(packet, (AttackTypes) type);
+        }
+
+        private bool KeyboardOrControllerSelectionButton(string buttonName)
+        {
+            return GetButton($"CONTROLLER{buttonName}") || GetButton(buttonName);
         }
 
         private float KeyboardOrControllerSelectionAxis(string axisName)
