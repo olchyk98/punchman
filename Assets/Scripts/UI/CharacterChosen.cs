@@ -6,9 +6,9 @@ using UnityEngine;
 public class CharacterChosen : MonoBehaviour
 {
     [SerializeField]
-    List<int> SelectedCharacterIndex = new List<int>();
+    List<int> SelectedCharacterIndex = new List<int>(); // the Selected characters
     [SerializeField]
-    private List<GameObject> Prefabs = new List<GameObject>();
+    private List<GameObject> Prefabs = new List<GameObject>(); // the playable character prefabs
 
     public void PlayerAdd() // this gets called in the arrowcontroller script and that means that for every character that exists there will be an spot on the list for them
     {
@@ -20,7 +20,7 @@ public class CharacterChosen : MonoBehaviour
         SelectedCharacterIndex[playernr] = character;
     }
 
-    public void ConfirmSelected()
+    public void ConfirmSelected() // when the confirm button gets pressed the GameManager Static class saves the selected characters including the corresponding player id's.
     {
         for (int i = 0; i < 2; i++)
             GameManager.Main.SetCharacter(i, Prefabs[SelectedCharacterIndex[i]]);

@@ -5,20 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneBoss : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void MapSelect(int Select)
+    public void MapSelect(int Select) // this gets called when the player wants to change scene
     {
         SceneManager.LoadScene(Select);
     }
