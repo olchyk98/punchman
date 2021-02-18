@@ -10,17 +10,16 @@ public class PlayerGroundCheck : MonoBehaviour
             .isTrigger = true;
     }
 
-    private void OnTriggerEnter2D() {
-        isTouchingGround = true;
-    }
-
-    private void OnTriggerExit2D() {
-        isTouchingGround = false;
-    }
-
     // Looks like we also need this in order to prevent race-conditions, very cool Unity!
-    private void OnTriggerStay2D()
+    private void OnTriggerStay2D(Collider2D other)
     {
+        if(other.isTrigger) return;
         isTouchingGround = true;
+    }
+
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.isTrigger) return;
+        isTouchingGround = false;
     }
 }
