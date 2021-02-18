@@ -11,6 +11,7 @@ namespace Player {
     {
         private Transform myTransform;
         private Animator myAnimator;
+        private bool isStunned;
 
         [SerializeField] private List<Attack> attacks;
         private List<int> myAttackAnimations = new List<int>();
@@ -35,9 +36,9 @@ namespace Player {
             }
         }
 
-        public Tuple<Attack, RaycastHit2D> Attack (int attackIndex)
+        public Tuple<Attack, Vector2, RaycastHit2D> Attack (int attackIndex)
         {
-            if(!RunAttack(attackIndex)) return default;
+            if(!RunAttack(attackIndex) || isStunned) return default;
 
             var attackSpec = attacks[attackIndex];
             var actorX = myTransform.right.x;
@@ -60,7 +61,7 @@ namespace Player {
 
             if(hit == default) return default;
 
-            return Tuple.Create(attackSpec, hit);
+            return Tuple.Create(attackSpec, attacks[attackIndex].direction, hit);
         }
 
         private void ClearTriggers()
@@ -142,5 +143,12 @@ namespace Player {
         }
 
         #endregion
+
+        public IEnumerator Stun(float aStunTime)
+        {
+            isStunned = true;
+            yield return new WaitForSeconds(aStunTime);
+            isStunned = false;
+        }
     }
 }

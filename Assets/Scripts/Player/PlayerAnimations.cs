@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Player
 {
@@ -20,12 +22,34 @@ namespace Player
 
         private void AssignClips()
         {
-            myAnimatorOverrider["Kick"] = myAnimations.Kick;
-            myAnimatorOverrider["Punch"] = myAnimations.Punch;
-            myAnimatorOverrider["Jump"] = myAnimations.Jump;
-            myAnimatorOverrider["Move"] = myAnimations.Move;
-            myAnimatorOverrider["Hit"] = myAnimations.Hit;
-            myAnimatorOverrider["Idle"] = myAnimations.Idle;
+            var animations = Animator.runtimeAnimatorController.animationClips;
+            var animationsLabeled = new Dictionary<string, AnimationClip>();
+            var overridedAnimations = new List<KeyValuePair<AnimationClip, AnimationClip>>();
+
+            foreach (AnimationClip clip in animations)
+            {
+                animationsLabeled[clip.name] = clip;
+            }
+
+            AssignClip(animationsLabeled["Kick"], myAnimations.Kick, overridedAnimations);
+            AssignClip(animationsLabeled["Punch"], myAnimations.Punch, overridedAnimations);
+            AssignClip(animationsLabeled["Jump"], myAnimations.Jump, overridedAnimations);
+            AssignClip(animationsLabeled["Walk"], myAnimations.Move, overridedAnimations);
+            AssignClip(animationsLabeled["Hit"], myAnimations.Hit, overridedAnimations);
+            AssignClip(animationsLabeled["Idle"], myAnimations.Idle, overridedAnimations);
+
+            myAnimatorOverrider.ApplyOverrides(overridedAnimations);
+            Animator.runtimeAnimatorController = myAnimatorOverrider;
+        }
+
+        private void AssignClip(
+            AnimationClip previous,
+            AnimationClip next,
+            List<KeyValuePair<AnimationClip, AnimationClip>> store
+        )
+        {
+            var pair = new KeyValuePair<AnimationClip, AnimationClip>(previous, next);
+            store.Add(pair);
         }
 
         public void PlayAnimation(string label)

@@ -334,7 +334,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &729942733 stripped
 GameObject:
@@ -649,6 +649,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134937, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: UpdateClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586475939055134937, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpdateClick
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134937, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}

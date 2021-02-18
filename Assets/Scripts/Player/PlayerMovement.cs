@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Player {
     [RequireComponent(typeof(PlayerInputHandler))]
@@ -12,8 +13,9 @@ namespace Player {
         private Transform myTransform;
         private SpriteRenderer myRenderer;
         private PlayerAnimations myAnimations;
+        private bool isStunned;
+        
         [SerializeField] private PlayerGroundCheck myGroundCheck;
-
         [SerializeField] [Range(5f, 20f)] private float myJumpHeight;
         [SerializeField] [Range(6f, 15f)] private float mySpeed;
 
@@ -57,6 +59,8 @@ namespace Player {
 
         public void HandleMove(PlayerInputPacket packet)
         {
+            if (isStunned) return;
+            
             // Apply movement force
             var direction = packet.MovementDirection;
 
@@ -118,5 +122,11 @@ namespace Player {
             mySpeed += speedModifier;
         }
 
+        public IEnumerator Stun(float aStunTime)
+        {
+            isStunned = true;
+            yield return new WaitForSeconds(aStunTime);
+            isStunned = false;
+        }
     }
 }
