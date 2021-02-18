@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 1337739306}
   m_Layer: 0
   m_Name: Out of bounds
-  m_TagString: Untagged
+  m_TagString: MapBounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

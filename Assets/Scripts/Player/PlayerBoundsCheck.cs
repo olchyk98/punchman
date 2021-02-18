@@ -9,7 +9,7 @@ namespace Player
         
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.name == "Map in bounds")
+            if (other.CompareTag("MapBounds"))
             {
                 OnOutOfBounds?.Invoke();
             }
