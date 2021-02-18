@@ -84,6 +84,20 @@ namespace Player {
 
             // Spawn splash effect object
             Instantiate(attackSplashPrefab, collisionPoint, Quaternion.identity);
+
+            // Shake Camera
+            ApplyHitToCamera();
+        }
+
+        /// <summary>
+        /// Makes camera shake in respective to the current
+        /// knockback percentage.
+        /// </summary>
+        private void ApplyHitToCamera()
+        {
+            const float maxForce = 5f;
+            var force = Mathf.Clamp(KnockbackPercentage, 0f, maxForce);
+            Shake.AddTrauma(force / maxForce * 10f);
         }
     }
 }
