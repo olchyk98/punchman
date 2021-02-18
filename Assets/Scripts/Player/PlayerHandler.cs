@@ -10,6 +10,7 @@ namespace Player {
     [RequireComponent(typeof(PlayerAttack))]
     [RequireComponent(typeof(PlayerPowerup))]
     [RequireComponent(typeof(PlayerAnimations))]
+    [RequireComponent(typeof(PlayerSoundSource))]
     public class PlayerHandler : MonoBehaviour
     {
         private PlayerHealth myHealth;
@@ -17,6 +18,7 @@ namespace Player {
         private PlayerMovement myMovement;
         private PlayerInputHandler myInputHandler;
         private PlayerAnimations myAnimations;
+        private PlayerSoundSource mySoundSource;
 
         public UnityAction<RaycastHit2D, Attack> OnAttack;
 
@@ -32,6 +34,7 @@ namespace Player {
             myHealth = GetComponent<PlayerHealth>();
             myAttack = GetComponent<PlayerAttack>();
             myAnimations = GetComponent<PlayerAnimations>();
+            mySoundSource = GetComponent<PlayerSoundSource>();
 
             myInputHandler.OnMove += HandleMove;
             myInputHandler.OnFire += HandleAttack;
@@ -83,7 +86,7 @@ namespace Player {
             if(attackInfo == default) return;
 
             (Attack attackSpec, RaycastHit2D hit) = attackInfo;
-
+            mySoundSource.PlayPunchEffect();
             OnAttack?.Invoke(hit, attackSpec);
         }
     }
