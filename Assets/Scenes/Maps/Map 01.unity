@@ -5387,7 +5387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104040078}
   m_Layer: 0
-  m_Name: SpawnPoint 02
+  m_Name: SpawnPoint 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6204,11 +6204,11 @@ PrefabInstance:
     - target: {fileID: 5927417690041906775, guid: e5fcad33994af49d7941430eac8c4087, type: 3}
       propertyPath: mySpawnPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 1677502907}
+      objectReference: {fileID: 104040078}
     - target: {fileID: 5927417690041906775, guid: e5fcad33994af49d7941430eac8c4087, type: 3}
       propertyPath: mySpawnPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 104040078}
+      objectReference: {fileID: 1677502907}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5fcad33994af49d7941430eac8c4087, type: 3}
 --- !u!1 &121890478
@@ -86409,7 +86409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677502907}
   m_Layer: 0
-  m_Name: SpawnPoint 01
+  m_Name: SpawnPoint 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
