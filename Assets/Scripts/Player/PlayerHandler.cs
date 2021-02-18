@@ -11,6 +11,7 @@ namespace Player {
     [RequireComponent(typeof(PlayerPowerup))]
     [RequireComponent(typeof(PlayerAnimations))]
     [RequireComponent(typeof(PlayerSoundSource))]
+    [RequireComponent(typeof(PlayerBoundsCheck))] 
     public class PlayerHandler : MonoBehaviour
     {
         private PlayerHealth myHealth;
@@ -19,9 +20,11 @@ namespace Player {
         private PlayerInputHandler myInputHandler;
         private PlayerAnimations myAnimations;
         private PlayerSoundSource mySoundSource;
+        private PlayerBoundsCheck myBoundsCheck;
 
         public UnityAction<RaycastHit2D, Vector2, Attack> OnAttack;
         public UnityAction<int, float> OnKnockbackUpdate;
+        public UnityAction<int> OnGameOver;
 
         public int Index { get; private set; }
         public float KnockbackPercentage {
@@ -36,6 +39,9 @@ namespace Player {
             myAttack = GetComponent<PlayerAttack>();
             myAnimations = GetComponent<PlayerAnimations>();
             mySoundSource = GetComponent<PlayerSoundSource>();
+            myBoundsCheck = GetComponent<PlayerBoundsCheck>();
+
+            myBoundsCheck.OnOutOfBounds += HandleGameOver;
 
             myInputHandler.OnMove += HandleMove;
             myInputHandler.OnFire += HandleAttack;
@@ -91,5 +97,10 @@ namespace Player {
             mySoundSource.PlayPunchEffect();
             OnAttack?.Invoke(hit, direction, attackSpec);
         }
+
+      private void HandleGameOver()
+      {
+          OnGameOver?.Invoke(Index);
+      }  
     }
 }
