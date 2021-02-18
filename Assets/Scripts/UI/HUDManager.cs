@@ -7,10 +7,8 @@ namespace UI
 {
     public class HUDManager : MonoBehaviour
     {
-        #region episka serialize fields
         [SerializeField] private UIHUDController[] myHUDControllers;
         [SerializeField] private HUDAvatar[] myAvatars;
-        #endregion
 
         private TextMeshProUGUI[] myStatTexts = new TextMeshProUGUI[2];
 

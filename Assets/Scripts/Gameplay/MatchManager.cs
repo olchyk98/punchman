@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Player;
 using UI;
+using UnityEngine.SceneManagement;
 
 namespace Gameplay {
     public class MatchManager : MonoBehaviour
@@ -42,6 +44,8 @@ namespace Gameplay {
                 playerHandler.InitializeHandler(f);
                 playerHandler.OnAttack += HandlePlayerAttack;
                 playerHandler.OnKnockbackUpdate += RequestToRerenderStatHud;
+                playerHandler.OnGameOver += HandleGameOver;
+                
 
                 // Append it to the list of players
                 allPlayers.Add(playerHandler);
@@ -60,6 +64,17 @@ namespace Gameplay {
         private void RequestToRerenderStatHud(int playerIndex, float newKnockback)
         {
             myHudManager.UpdateStat(playerIndex, $"{newKnockback}%");
+        }
+
+        private void HandleGameOver(int playerIndex)
+        {
+            StartCoroutine(LoadLevelAfterDelay(6));
+        }
+
+        IEnumerator LoadLevelAfterDelay(float time)
+        {
+            yield return new WaitForSeconds(time);
+            SceneManager.LoadScene("Main Menu");
         }
     }
 }
