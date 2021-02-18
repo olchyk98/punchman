@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: -5893672952569204665}
   - component: {fileID: -24490558412891152}
   - component: {fileID: 9005082656749074727}
+  - component: {fileID: -6027081620569006675}
   m_Layer: 0
   m_Name: Cyborg
   m_TagString: Player
@@ -210,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunTime: 0.5
+  attackSplashPrefab: {fileID: 0}
   hasShield: 0
   KnockbackPercentage: 1
 --- !u!114 &-2784663617735898791
@@ -374,6 +376,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 98320502102fd3442b21a44c387ccf13, type: 3}
   - {fileID: 8300000, guid: 8961959be02d57b4086e5c94aef4f82d, type: 3}
   - {fileID: 8300000, guid: 18905ba50e739204f83218b0fc180427, type: 3}
+--- !u!114 &-6027081620569006675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962170370730785320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b55a2950809409fa4dbc4e3c36f3dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3962170371105139044
 GameObject:
   m_ObjectHideFlags: 0
