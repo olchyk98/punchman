@@ -1598,7 +1598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SelectMap
+      value: SetMap
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1610,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: MapSelector, Assembly-CSharp
+      value: GameUnityInterface, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -1910,7 +1910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SelectMap
+      value: SetMap
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1922,7 +1922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: MapSelector, Assembly-CSharp
+      value: GameUnityInterface, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2586475939055134941, guid: b8c08c1ec8ff62245ab2c6f885817659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -2624,7 +2624,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1959829018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6af2c55315efc48a6f685342d778ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bf603ccce462b64c93923933a81769e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1970658504

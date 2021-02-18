@@ -8,7 +8,7 @@ public class CharacterChosen : MonoBehaviour
     [SerializeField]
     List<int> SelectedCharacterIndex = new List<int>();
     [SerializeField]
-    private List<GameObject> Prefabs = new List<GameObject>();
+    private List<string> characterNames = new List<string>();
 
     public void PlayerAdd() // this gets called in the arrowcontroller script and that means that for every character that exists there will be an spot on the list for them
     {
@@ -23,7 +23,7 @@ public class CharacterChosen : MonoBehaviour
     public void ConfirmSelected()
     {
         for (int i = 0; i < 2; i++)
-            GameManager.Main.SetCharacter(i, Prefabs[SelectedCharacterIndex[i]]);
-        GameManager.Main.LoadGame();
+            GameManager.SetCharacter(i, characterNames[SelectedCharacterIndex[i]]);
+        GameManager.LoadGame();
     }
 }

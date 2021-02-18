@@ -1,54 +1,29 @@
 ﻿using System.Collections.Generic;
 using Gameplay;
+using Gameplay.Materials;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public static class GameManager
 {
 
-    [SerializeField] private int mapSectionStart;
+    public const int mapSectionStart = 5;
+    public static int selectedMap = -1;
+    public static Dictionary<int, GameObject> characters = new Dictionary<int, GameObject>();
 
-    public static GameManager Main;
-
-    private int selectedMap = -1;
-    private Dictionary<int, GameObject> characters = new Dictionary<int, GameObject>();
-    private void Awake()
-    {
-        if(Main != null && Main != this) {
-            DestroyImmediate(gameObject);
-            return;
-        }
-        Main = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        SceneManager.sceneLoaded += StartGame;
-    }
-
-    public void SetMap(int map)
+    public static void SetMap(int map)
     {
         selectedMap = mapSectionStart + map;
     }
 
-    public void SetCharacter(int player, GameObject character)
+    public static void SetCharacter(int player, string character)
     {
-        characters.Add(player, character);
+        characters.Add(player, PrefabManager.Main.GetPrefabByName(character));
     }
 
-    public void LoadGame()
+    public static void LoadGame()
     {
         SceneManager.LoadScene(selectedMap);
     }
 
-    private void StartGame(Scene s, LoadSceneMode mode)
-    {
-        if (s.buildIndex == selectedMap)
-        {
-            MatchManager m = GameObject.Find("Match Manager").GetComponent<MatchManager>();
-            m.playerPrefabs = characters;
-        }
-    }
-    
 }
