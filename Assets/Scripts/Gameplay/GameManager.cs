@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private int mapSectionStart;
-    [SerializeField] private GameObject matchManager;
 
     public static GameManager Main;
 
@@ -47,8 +46,7 @@ public class GameManager : MonoBehaviour
     {
         if (s.buildIndex == selectedMap)
         {
-            Instantiate(matchManager, null);
-            MatchManager m = matchManager.GetComponent<MatchManager>();
+            MatchManager m = GameObject.Find("Match Manager").GetComponent<MatchManager>();
             m.playerPrefabs = characters;
         }
     }

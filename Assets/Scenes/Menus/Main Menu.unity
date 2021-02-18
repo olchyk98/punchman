@@ -1815,9 +1815,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 801128576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83077c801b38bbc4d88f675db98b28eb, type: 3}
+  m_Script: {fileID: 11500000, guid: a3a108065651ee6439d201648b510e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSectionStart: 5
 --- !u!4 &801128578
 Transform:
   m_ObjectHideFlags: 0
@@ -2597,12 +2598,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1329476285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659b9dec2923c044e8147d3aae68b021, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c421762e13414c9eb8bc239d565ab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myPrefabs:
-  - myName: Shield Glow
-    myObject: {fileID: 6326309738117070775, guid: ba038970580b8204784c562a42f7d285, type: 3}
+  - myName: 
+    myObject: {fileID: 0}
+  - myName: 
+    myObject: {fileID: 0}
 --- !u!4 &1329476287
 Transform:
   m_ObjectHideFlags: 0
@@ -2615,7 +2618,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472653786
 GameObject:
