@@ -186,11 +186,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacks:
   - direction: {x: 1, y: 0}
-    affection: 0.6
-    cooldown: 0.43
+    affection: 0.1
+    cooldown: 0.2
     animationCooldown: 0.3
     animationTriggerName: Punch
-    maxDistance: 5
+    maxDistance: 3
   - direction: {x: 1, y: 0}
     affection: 1.6
     cooldown: 3
@@ -210,7 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunTime: 0.5
-  attackSplashPrefab: {fileID: 6715695030476598322, guid: d29c2af792a4846dcae1026c6b439a13, type: 3}
   hasShield: 0
   KnockbackPercentage: 1
 --- !u!114 &-2784663617735898791
