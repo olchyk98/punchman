@@ -1,22 +1,27 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Player;
+using UI;
 
 namespace Gameplay {
     public class MatchManager : MonoBehaviour
     {
-
+        [SerializeField] private GameObject myHud;
         [SerializeField] private List<Transform> mySpawnPoints;
         public static int NUMBER_OF_PLAYERS = 2;
         public Dictionary<int, GameObject> playerPrefabs = new Dictionary<int, GameObject>();
 
         // A list containing all of the players in game
         private List<PlayerHandler> allPlayers = new List<PlayerHandler>();
-
+        private HUDManager myHudManager;
+        
+        
         private void Start()
         {
             playerPrefabs = GameManager.characters;
             SpawnPlayers();
+            myHudManager = myHud.GetComponent<HUDManager>();
+            myHudManager.SetCharacters(playerPrefabs[0], playerPrefabs[1]);
         }
 
         private void SpawnPlayers()
@@ -36,6 +41,7 @@ namespace Gameplay {
 
                 playerHandler.InitializeHandler(f);
                 playerHandler.OnAttack += HandlePlayerAttack;
+                playerHandler.OnKnockbackUpdate += RequestToRerenderStatHud;
 
                 // Append it to the list of players
                 allPlayers.Add(playerHandler);
@@ -49,6 +55,11 @@ namespace Gameplay {
             if(targetHandler == null) return;
 
             targetHandler.ApplyDamage(spec, direction, hit.point);
+        }
+
+        private void RequestToRerenderStatHud(int playerIndex, float newKnockback)
+        {
+            myHudManager.UpdateStat(playerIndex, $"{newKnockback}%");
         }
     }
 }
